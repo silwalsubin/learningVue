@@ -1,13 +1,20 @@
 <template>
   <div id="app">
     <img src="./assets/myApp.png">
-    <router-view/>
+    <welcome></welcome>
+    <tasksToDo></tasksToDo>
   </div>
 </template>
 
 <script>
+import Welcome from './components/Welcome'
+import TasksToDo from './components/TasksToDo'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    Welcome, 
+    TasksToDo
+  }
 }
 </script>
 

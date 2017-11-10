@@ -1,12 +1,12 @@
 <template>
-  <div class = "hello">
+  <div class = "welcome">
     <h1 v-bind:title = "msg">{{ msg }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'welcome',
   data () {
     return {
       msg: "Welcome to Subin's To-Do App"
