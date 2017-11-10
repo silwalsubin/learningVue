@@ -4,7 +4,6 @@
         <input type="text" v-model="enteredTask" placeholder="Enter a task"/>
         <button type="submit">Enter</button>
     </form>
-    <h2 v-show = "this.tasks.length > 0"v-bind:title = "msg">{{ msg }}</h2>
     <ul v-for="task in tasks">
         <li>{{task.name}}</li>
         <button v-on:click="deleteTask(task)">Delete</button>
@@ -14,12 +13,11 @@
 
 <script>
 export default {
-  name: 'tasksToDo',
+  name: "tasksToDo",
   data () {
     return {
-      msg: "Tasks:",
       tasks: [ ],
-      enteredTask: ''
+      enteredTask: ""
     }
   },
   methods: {
@@ -27,9 +25,11 @@ export default {
         this.tasks.push({name:this.enteredTask}); 
         this.enteredTask = '';
         e.preventDefault();
+        this.$emit('taskCreated');
     }, 
     deleteTask: function(task){
         this.tasks.splice(this.tasks.indexOf(task), 1);
+        this.$emit('taskDeleted');
     }
   }
 }
