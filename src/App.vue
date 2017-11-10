@@ -2,7 +2,7 @@
   <div id="app">
     <img src="./assets/myApp.png">
     <welcome></welcome>
-    <h3 v-bind:title = "msg">{{ msg }} : {{taskCounter}}</h3>
+    <h3 v-show="taskCounter > 0" v-bind:title = "msg">{{ msg }} : {{taskCounter}}</h3>
     <tasksToDo v-on:taskCreated="tasksAdded" v-on:taskDeleted="tasksRemoved"></tasksToDo>
   </div>
 </template>
