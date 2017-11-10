@@ -15,11 +15,11 @@ export default {
   data() {
     return {
         msg: "Number of Task (s)",
-        taskCounter: 0    
-    }  
+        taskCounter: 0
+    }
   },
   components: {
-    Welcome, 
+    Welcome,
     TasksToDo
   },
   methods:{
@@ -28,14 +28,14 @@ export default {
     },
     tasksRemoved: function(){
         this.taskCounter--;
-    }    
+    }
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

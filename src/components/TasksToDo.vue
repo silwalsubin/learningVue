@@ -7,7 +7,7 @@
     <ul v-for="task in tasks">
         <li>{{task.name}}</li>
         <button v-on:click="deleteTask(task)">Delete</button>
-    </ul>    
+    </ul>
   </div>
 </template>
 
@@ -21,12 +21,12 @@ export default {
     }
   },
   methods: {
-    createTask: function(e){        
-        this.tasks.push({name:this.enteredTask}); 
+    createTask: function(e){
+        this.tasks.push({name:this.enteredTask});
         this.enteredTask = '';
         e.preventDefault();
         this.$emit('taskCreated');
-    }, 
+    },
     deleteTask: function(task){
         this.tasks.splice(this.tasks.indexOf(task), 1);
         this.$emit('taskDeleted');
