@@ -31,3 +31,4 @@ new Vue({
     }
   }
 })
+store.dispatch('getTasksData');

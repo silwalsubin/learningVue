@@ -1,6 +1,7 @@
 import vue from 'vue';
 import vuex from 'vuex';
-import ajax from 'ajax';
+import axios from 'axios';
+
 
 vue.use(vuex);
 
@@ -16,9 +17,12 @@ export default new vuex.Store({
       context.commit('deleteTask', payload);
     },
     getTasksData: (context) => {
-      ajax.get("http://localhost:8080/static/todos.json").then(data => {
-          context.commit('createTask', data);
-      });
+       var url = "http://localhost:8080/static/todos.json";
+       axios.get(url).then(response => {
+         for (var value of response.data){
+           context.commit('createTask', value);
+         }
+       });
     }
   },
   mutations: {
