@@ -12,24 +12,28 @@
 </template>
 
 <script>
+
+import store from '../store'
 export default {
   name: "tasksToDo",
   data () {
     return {
-      tasks: [ ],
       enteredTask: ""
+    }
+  },
+  computed: {
+    tasks: function(){
+      return this.$store.getters.getTasks;
     }
   },
   methods: {
     createTask: function(e){
-        this.tasks.push({name:this.enteredTask});
+        this.$store.dispatch('addTask', {name:this.enteredTask});
         this.enteredTask = '';
         e.preventDefault();
-        this.$emit('taskCreated');
     },
     deleteTask: function(task){
-        this.tasks.splice(this.tasks.indexOf(task), 1);
-        this.$emit('taskDeleted');
+        this.$store.dispatch('removeTask', task);
     }
   }
 }

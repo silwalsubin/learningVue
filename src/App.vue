@@ -3,32 +3,30 @@
     <img src="./assets/myApp.png">
     <welcome></welcome>
     <h3 v-show="taskCounter > 0" v-bind:title = "msg">{{ msg }} : {{taskCounter}}</h3>
-    <tasksToDo v-on:taskCreated="tasksAdded" v-on:taskDeleted="tasksRemoved"></tasksToDo>
+    <tasksToDo></tasksToDo>
   </div>
 </template>
 
 <script>
 import Welcome from './components/Welcome'
 import TasksToDo from './components/TasksToDo'
+import store from './store'
+
 export default {
   name: 'app',
   data() {
     return {
-        msg: "Number of Task (s)",
-        taskCounter: 0
+        msg: "Number of Task (s)"
+    }
+  },
+  computed: {
+    taskCounter : function(){
+      return this.$store.getters.getTasks.length;
     }
   },
   components: {
     Welcome,
     TasksToDo
-  },
-  methods:{
-    tasksAdded: function(){
-        this.taskCounter++;
-    },
-    tasksRemoved: function(){
-        this.taskCounter--;
-    }
   }
 }
 </script>
