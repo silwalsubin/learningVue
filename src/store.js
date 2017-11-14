@@ -1,5 +1,6 @@
 import vue from 'vue';
 import vuex from 'vuex';
+import ajax from 'ajax';
 
 vue.use(vuex);
 
@@ -13,6 +14,11 @@ export default new vuex.Store({
     },
     removeTask: (context, payload) => {
       context.commit('deleteTask', payload);
+    },
+    getTasksData: (context) => {
+      ajax.get("http://localhost:8080/static/todos.json").then(data => {
+          context.commit('createTask', data);
+      });
     }
   },
   mutations: {
