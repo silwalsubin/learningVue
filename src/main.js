@@ -5,18 +5,29 @@ import App from './App'
 import router from './router'
 import store from './store'
 
-//Vue.use(vuex);
-
 Vue.config.productionTip = false
-
-
-
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  template: '<App/>',
+  template: `<App :tasks="tasks"
+                  @addTask="addTask"
+                  @deleteTask="deleteTask">
+             </App>`,
   components: { App },
-  store
+  store,
+  methods: {
+    addTask(task){
+      this.$store.dispatch('addTask',task);
+    },
+    deleteTask(task){
+      this.$store.dispatch('removeTask', task);
+    }
+  },
+  data(){
+    return {
+      tasks: this.$store.getters.getTasks
+    }
+  }
 })

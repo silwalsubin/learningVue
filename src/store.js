@@ -17,7 +17,6 @@ export default new vuex.Store({
   },
   mutations: {
     createTask: (state, payload) => {
-      //state.tasks.length = 0;
       state.tasks.push(payload);
     },
     deleteTask: (state, payload) => {

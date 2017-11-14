@@ -2,26 +2,34 @@
   <div id="app">
     <img src="./assets/myApp.png">
     <welcome></welcome>
-    <h3 v-show="taskCounter > 0" v-bind:title = "msg">{{ msg }} : {{taskCounter}}</h3>
-    <tasksToDo></tasksToDo>
+    <h3 v-show="taskCounter > 0" :title = "msg">{{ msg }} : {{taskCounter}}</h3>
+    <tasksToDo :tasks="tasks" @addTask="addTask" @deleteTask="deleteTask"></tasksToDo>
   </div>
 </template>
 
 <script>
 import Welcome from './components/Welcome'
 import TasksToDo from './components/TasksToDo'
-import store from './store'
 
 export default {
   name: 'app',
+  props: ['tasks'],
   data() {
     return {
         msg: "Number of Task (s)"
     }
   },
+  methods: {
+    addTask(task){
+      this.$emit("addTask", task);
+    },
+    deleteTask(task){
+      this.$emit("deleteTask", task);
+    }
+  },
   computed: {
-    taskCounter : function(){
-      return this.$store.getters.getTasks.length;
+    taskCounter(){
+      return this.tasks.length;
     }
   },
   components: {

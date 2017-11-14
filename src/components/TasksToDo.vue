@@ -1,39 +1,30 @@
 <template>
   <div class = "tasksToDo">
-    <form v-on:submit="createTask">
-        <input type="text" v-model="enteredTask" placeholder="Enter a task"/>
-        <button type="submit">Enter</button>
-    </form>
+      <input type="text" v-model="enteredTask" placeholder="Enter a task"/>
+      <button @click="addTask">Add</button>
     <ul v-for="task in tasks">
         <li>{{task.name}}</li>
-        <button v-on:click="deleteTask(task)">Delete</button>
+        <button @click="deleteTask(task)">Delete</button>
     </ul>
   </div>
 </template>
 
 <script>
-
-import store from '../store'
 export default {
   name: "tasksToDo",
+  props:['tasks'],
   data () {
     return {
-      enteredTask: ""
-    }
-  },
-  computed: {
-    tasks: function(){
-      return this.$store.getters.getTasks;
+      enteredTask: ''
     }
   },
   methods: {
-    createTask: function(e){
-        this.$store.dispatch('addTask', {name:this.enteredTask});
+    addTask(){
+        this.$emit("addTask", {name:this.enteredTask});
         this.enteredTask = '';
-        e.preventDefault();
     },
-    deleteTask: function(task){
-        this.$store.dispatch('removeTask', task);
+    deleteTask(task){
+        this.$emit("deleteTask", task);
     }
   }
 }
