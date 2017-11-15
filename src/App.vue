@@ -30,8 +30,8 @@ export default {
       return this.tasks.length;
     },
     msg(){
-      let m = "Number of Task";
-      return this.tasks.length > 1 ? m + "s" : m;
+      let plural = this.tasks.length > 1 ? "s" : "";
+      return `Number of Task${plural}`;
     }
   },
   components: {
