@@ -19,9 +19,6 @@ export default new vuex.Store({
     changeTaskStatus: (context, payload) => {
       context.commit('changeTaskStatus', payload);
     },
-    submitTasks: (context, payload) => {
-      context.commit('setTasks', payload);
-    },
     getTasksData: (context) => {
        var url = "http://localhost:8080/static/todos.json";
        axios.get(url).then(response => {
