@@ -13,18 +13,20 @@ new Vue({
   router,
   template: `<App :tasks="tasks"
                   @addTask="addTask"
-                  @deleteTask="deleteTask">
+                  @deleteTask="deleteTask"
+                  @taskCompletionStatus = "taskCompletionStatus">
              </App>`,
   components: { App },
   store,
   methods: {
     addTask(task){
-      this.tasks.push(task);
-      this.$store.dispatch('submitTasks',this.tasks);
+      this.$store.dispatch('addTask',task);
     },
     deleteTask(task){
-      this.tasks.splice(this.tasks.indexOf(task), 1);
-      this.$store.dispatch('submitTasks', this.tasks);
+      this.$store.dispatch('deleteTask', task);
+    },
+    taskCompletionStatus(task){
+      this.$store.dispatch('changeTaskStatus', task);
     }
   },
   computed:{

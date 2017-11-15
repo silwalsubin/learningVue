@@ -3,7 +3,7 @@
     <img src="./assets/myApp.png">
     <welcome></welcome>
     <h3 v-show="taskCounter > 0" :title = "msg">{{ msg }} : {{taskCounter}}</h3>
-    <tasksToDo :tasks="tasks" @addTask="addTask" @deleteTask="deleteTask"></tasksToDo>
+    <tasksToDo :tasks="tasks" @addTask="addTask" @deleteTask="deleteTask" @taskCompletionStatus="taskCompletionStatus"></tasksToDo>
   </div>
 </template>
 
@@ -20,6 +20,9 @@ export default {
     },
     deleteTask(task){
       this.$emit("deleteTask", task);
+    },
+    taskCompletionStatus(task){
+      this.$emit("taskCompletionStatus", task);
     }
   },
   computed: {

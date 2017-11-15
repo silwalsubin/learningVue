@@ -4,6 +4,7 @@
       <button @click="addTask">Add</button>
     <ul v-for="task in tasks">
         <li>{{task.name}}</li>
+        <button @click="markCompleteIncomplete(task)">{{task.isComplete ? "Rework" : "Completed"}}</button>
         <button @click="deleteTask(task)">Delete</button>
     </ul>
   </div>
@@ -20,11 +21,14 @@ export default {
   },
   methods: {
     addTask(){
-        this.$emit("addTask", {name:this.enteredTask});
+        this.$emit("addTask", {name:this.enteredTask, isComplete: false});
         this.enteredTask = '';
     },
     deleteTask(task){
         this.$emit("deleteTask", task);
+    },
+    markCompleteIncomplete(task){
+        this.$emit("taskCompletionStatus", task);
     }
   }
 }
