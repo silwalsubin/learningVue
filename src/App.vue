@@ -14,11 +14,6 @@ import TasksToDo from './components/TasksToDo'
 export default {
   name: 'app',
   props: ['tasks'],
-  data() {
-    return {
-        msg: "Number of Task (s)"
-    }
-  },
   methods: {
     addTask(task){
       this.$emit("addTask", task);
@@ -30,6 +25,10 @@ export default {
   computed: {
     taskCounter(){
       return this.tasks.length;
+    },
+    msg(){
+      let m = "Number of Task";
+      return this.tasks.length > 1 ? m + "s" : m;
     }
   },
   components: {
