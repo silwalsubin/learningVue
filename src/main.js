@@ -19,10 +19,15 @@ new Vue({
   store,
   methods: {
     addTask(task){
-      this.$store.dispatch('addTask',task);
+      this.tasks.push(task);
+      setTask(tasks);
     },
     deleteTask(task){
-      this.$store.dispatch('removeTask', task);
+      this.tasks.splice(this.tasks.indexOf(task), 1);
+      setTask(tasks);
+    },
+    setTask(tasks){
+      this.$store.dispatch('submitTasks', tasks);
     }
   },
   data(){
