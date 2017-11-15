@@ -10,24 +10,31 @@ export default new vuex.Store({
     tasks: []
   },
   actions: {
-    submitTasks: (context, payload) => {
-      context.commit('setTasks', payload);
+    addTask: (context, payload) => {
+      context.commit('createTask', payload);
     },
-    getTasksData: context => {
-       let url = "http://localhost:8080/static/todos.json";
+    removeTask: (context, payload) => {
+      context.commit('deleteTask', payload);
+    },
+    getTasksData: (context) => {
+       var url = "http://localhost:8080/static/todos.json";
        axios.get(url).then(response => {
-           context.commit('setTasks', response.data);
+         for (var value of response.data){
+           context.commit('createTask', value);
+         }
        });
     }
   },
   mutations: {
-    setTasks: (state, payload) => {
-      state.tasks.length = 0;
-      state.tasks.push( ... payload);
+    createTask: (state, payload) => {
+      state.tasks.push(payload);
+    },
+    deleteTask: (state, payload) => {
+      state.tasks.splice(state.tasks.indexOf(payload), 1);
     }
   },
   getters: {
-    getTasks: state => {
+    getTasks: (state) => {
       return state.tasks;
     }
   }
