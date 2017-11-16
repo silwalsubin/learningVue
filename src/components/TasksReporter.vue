@@ -18,7 +18,7 @@ export default {
     description(){
       let completedTasks = this.tasks.filter(x => x.isComplete == true).length;
       let incompleteTasks = this.tasks.length - completedTasks;
-      return `Completed : ${completedTasks} || To Do: ${incompleteTasks}`;
+      return `Done : ${completedTasks} || To Do: ${incompleteTasks}`;
     }
   }
 }
