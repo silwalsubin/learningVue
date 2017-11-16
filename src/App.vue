@@ -2,13 +2,14 @@
   <div id="app">
     <img src="./assets/myApp.png">
     <welcome></welcome>
-    <h3 v-show="taskCounter > 0" :title = "msg">{{ msg }} : {{taskCounter}}</h3>
+    <tasksReporter :tasks="tasks"></tasksReporter>
     <tasksToDo :tasks="tasks" @addTask="addTask" @deleteTask="deleteTask" @taskCompletionStatus="taskCompletionStatus"></tasksToDo>
   </div>
 </template>
 
 <script>
 import Welcome from './components/Welcome'
+import TasksReporter from './components/TasksReporter'
 import TasksToDo from './components/TasksToDo'
 
 export default {
@@ -28,14 +29,11 @@ export default {
   computed: {
     taskCounter(){
       return this.tasks.length;
-    },
-    msg(){
-      let plural = this.tasks.length > 1 ? "s" : "";
-      return `Number of Task${plural}`;
     }
   },
   components: {
     Welcome,
+    TasksReporter,
     TasksToDo
   }
 }
