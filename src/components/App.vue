@@ -3,7 +3,7 @@
     <img src="../assets/myApp.png">
     <welcome></welcome>
     <statusReporter :status="tasksStatus"></statusReporter>
-    <tasksToDo @addTask="addTask" @deleteTask="deleteTask" @taskCompletionStatus="taskCompletionStatus"></tasksToDo>
+    <tasksToDo :tasks="tasks" @addTask="addTask" @deleteTask="deleteTask" @taskCompletionStatus="taskCompletionStatus"></tasksToDo>
   </div>
 </template>
 
@@ -27,6 +27,9 @@ export default {
     }
   },
   computed: {
+    tasks() {
+      return this.$store.getters.getTasks;
+    },
     tasksStatus(){
       return this.$store.getters.getTasksStatusReport;
     }

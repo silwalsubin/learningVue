@@ -13,6 +13,12 @@
 <script>
 export default {
   name: "tasksToDo",
+  props: {
+    tasks: {
+      type: Array,
+      default: []
+    }
+  },
   data () {
     return {
       enteredTask: ''
@@ -25,14 +31,10 @@ export default {
     },
     deleteTask(task){
         this.$emit("deleteTask", task);
+        this.enteredTask = '';
     },
     markCompleteIncomplete(task){
         this.$emit("taskCompletionStatus", task);
-    }
-  },
-  computed: {
-    tasks() {
-      return this.$store.getters.getTasks;
     }
   }
 }
