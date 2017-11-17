@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <img src="./assets/myApp.png">
+    <img src="../assets/myApp.png">
     <welcome></welcome>
-    <tasksReporter :tasks="tasks"></tasksReporter>
-    <tasksToDo :tasks="tasks" @addTask="addTask" @deleteTask="deleteTask" @taskCompletionStatus="taskCompletionStatus"></tasksToDo>
+    <statusReporter :status="tasksStatus"></statusReporter>
+    <tasksToDo @addTask="addTask" @deleteTask="deleteTask" @taskCompletionStatus="taskCompletionStatus"></tasksToDo>
   </div>
 </template>
 
 <script>
-import Welcome from './components/Welcome'
-import TasksReporter from './components/TasksReporter'
-import TasksToDo from './components/TasksToDo'
+import Welcome from './Welcome'
+import StatusReporter from './sharedComponents/StatusReporter'
+import TasksToDo from './taskComponents/TasksToDo'
 
 export default {
   name: 'app',
@@ -27,13 +27,13 @@ export default {
     }
   },
   computed: {
-    taskCounter(){
-      return this.tasks.length;
+    tasksStatus(){
+      return this.$store.getters.getTasksStatusReport;
     }
   },
   components: {
     Welcome,
-    TasksReporter,
+    StatusReporter,
     TasksToDo
   }
 }

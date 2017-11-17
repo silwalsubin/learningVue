@@ -13,7 +13,6 @@
 <script>
 export default {
   name: "tasksToDo",
-  props:['tasks'],
   data () {
     return {
       enteredTask: ''
@@ -29,6 +28,11 @@ export default {
     },
     markCompleteIncomplete(task){
         this.$emit("taskCompletionStatus", task);
+    }
+  },
+  computed: {
+    tasks() {
+      return this.$store.getters.getTasks;
     }
   }
 }
