@@ -1,6 +1,6 @@
 
 import Vue from 'vue'
-import TasksToDo from '@/components/taskComponents/TasksToDo'
+import TasksToDo from '@/components/TasksToDo'
 import App from '@/components/App'
 
 

@@ -10,7 +10,7 @@
 <script>
 import Welcome from './Welcome'
 import StatusReporter from './StatusReporter'
-import TasksToDo from './taskComponents/TasksToDo'
+import TasksToDo from './TasksToDo'
 
 export default {
   name: 'app',
