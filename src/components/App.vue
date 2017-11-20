@@ -9,7 +9,7 @@
 
 <script>
 import Welcome from './Welcome'
-import StatusReporter from './sharedComponents/StatusReporter'
+import StatusReporter from './StatusReporter'
 import TasksToDo from './taskComponents/TasksToDo'
 
 export default {
