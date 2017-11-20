@@ -11,8 +11,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  template: `<App :tasks="tasks"
-                  @addTask="addTask"
+  template: `<App @addTask="addTask"
                   @deleteTask="deleteTask"
                   @taskCompletionStatus = "taskCompletionStatus">
              </App>`,
@@ -20,18 +19,13 @@ new Vue({
   store,
   methods: {
     addTask(task){
-      this.$store.dispatch('addTask',task);
+      this.$store.dispatch('addTask', task);
     },
     deleteTask(task){
       this.$store.dispatch('deleteTask', task);
     },
     taskCompletionStatus(task){
       this.$store.dispatch('changeTaskStatus', task);
-    }
-  },
-  computed:{
-    tasks(){
-      return this.$store.getters.getTasks;
     }
   }
 })

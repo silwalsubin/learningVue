@@ -6,6 +6,6 @@ describe('Welcome.vue', () => {
     const Constructor = Vue.extend(Welcome);
     const vm = new Constructor().$mount();
     expect(vm.$el.querySelector('.welcome h1').textContent)
-      .to.equal("Welcome to Subin's To-Do App")
+      .toBe("Welcome to Subin's To-Do App")
   })
 })

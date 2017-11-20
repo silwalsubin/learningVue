@@ -14,7 +14,6 @@ import TasksToDo from './taskComponents/TasksToDo'
 
 export default {
   name: 'app',
-  props: ['tasks'],
   methods: {
     addTask(task){
       this.$emit("addTask", task);

@@ -19,9 +19,9 @@ describe('StatusReporter.vue', () => {
 
     Vue.nextTick(() => {
       expect(vm.$el.querySelector('.statusReporter h3').textContent)
-            .to.equal(expectedTotal);
+            .toBe(expectedTotal);
       expect(vm.$el.querySelector('.statusReporter h4').textContent)
-            .to.equal(expectedDescription);
+            .toBe(expectedDescription);
       done();
     })
   }),
@@ -39,9 +39,9 @@ describe('StatusReporter.vue', () => {
 
     Vue.nextTick(() => {
       expect(vm.$el.querySelector('.statusReporter h3').textContent)
-            .to.equal(expectedTotal);
+            .toBe(expectedTotal);
       expect(vm.$el.querySelector('.statusReporter h4').textContent)
-            .to.equal(expectedDescription);
+            .toBe(expectedDescription);
       done();
     })
   }),
@@ -59,9 +59,9 @@ describe('StatusReporter.vue', () => {
 
     Vue.nextTick(() => {
       expect(vm.$el.querySelector('.statusReporter h3').style.display)
-            .to.equal("none");
+            .toBe("none");
       expect(vm.$el.querySelector('.statusReporter h4').style.display)
-            .to.equal("none");
+            .toBe("none");
       done();
     })
   })
