@@ -6,55 +6,19 @@ import App from '@/components/App'
 
 describe('TasksToDo.vue', () => {
 
-  it('enter button should create tasks.', done => {
+  let entryOne = {name: "task 1", isComplete: false};
+  let entryTwo = {name: "task 2", isComplete: true };
+  let entryThree = {name: "task 3", isComplete: true };
+  const tasks = [entryOne, entryTwo, entryThree];
+
+  it('TasksToDo should display the tasks properly', done => {
     const Constructor = Vue.extend(TasksToDo);
-
-    const tasks = [];
-
-    const vm = new Constructor({ propsData: { tasks } }).$mount();
-
-    vm.$on("addTask", () => {
-      tasks.push({ name: `test ${tasks.length}` });
-    });
-
-
-    vm.$el.querySelector('.tasksToDo button').click();
-    vm.$el.querySelector('.tasksToDo button').click();
-
-    vm.$nextTick(() => {
-      expect(tasks.length).toBe(2);
-      done();
-    });
-  })
-
-
-
-/*
-  it('delete button should delete tasks.', (done) => {
-    const Constructor = Vue.extend(TasksToDo);
-    const vm = new Constructor().$mount();
-    enterData(vm);
+    const vm = new Constructor({
+       propsData: { tasks }
+     }).$mount();
     Vue.nextTick(() => {
-      removeTask(vm);
-      removeTask(vm);
-      expect(vm.tasks.length).to.equal(2);
-      done();
+       expect(vm.$el.querySelectorAll('.tasksToDo ul').length).toBe(tasks.length);
+       done();
     })
-  })*/
+  });
 })
-
-function enterData(vm){
-  enterTask(vm, "one");
-  enterTask(vm, "two");
-  enterTask(vm, "three");
-  enterTask(vm, "four");
-}
-
-function enterTask (vm, taskName){
-  vm.$el.querySelector('.tasksToDo input').text = taskName;
-  vm.$el.querySelector('.tasksToDo button').click();
-}
-
-function removeTask (vm){
-  vm.$el.querySelector('.tasksToDo ul button').click();
-}
