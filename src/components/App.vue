@@ -1,42 +1,20 @@
 <template>
   <div id="app">
     <img src="../assets/myApp.png">
-    <welcome></welcome>
-    <statusReporter :status="tasksStatus"></statusReporter>
-    <tasksToDo :tasks="tasks" @addTask="addTask" @deleteTask="deleteTask" @taskCompletionStatus="taskCompletionStatus"></tasksToDo>
+    <welcome/>
+    <tasks/>
   </div>
 </template>
 
 <script>
 import Welcome from './Welcome'
-import StatusReporter from './StatusReporter'
-import TasksToDo from './task/TasksToDo'
+import Tasks from './Tasks'
 
 export default {
   name: 'app',
-  methods: {
-    addTask(task){
-      this.$emit("addTask", task);
-    },
-    deleteTask(task){
-      this.$emit("deleteTask", task);
-    },
-    taskCompletionStatus(task){
-      this.$emit("taskCompletionStatus", task);
-    }
-  },
-  computed: {
-    tasks() {
-      return this.$store.getters.getTasks;
-    },
-    tasksStatus(){
-      return this.$store.getters.getTasksStatusReport;
-    }
-  },
   components: {
     Welcome,
-    StatusReporter,
-    TasksToDo
+    Tasks
   }
 }
 </script>
