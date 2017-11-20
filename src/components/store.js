@@ -9,12 +9,8 @@ import getters from './store/getter'
 vue.use(vuex);
 
 export default new vuex.Store({
-  modules : {
-    taskModule :{
       state,
       actions,
       mutations,
       getters
-    }
-  }
 });

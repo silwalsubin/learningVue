@@ -10,7 +10,7 @@ describe ('Store Test', () => {
 
   it('dispatch: addTask', done => {
     store.dispatch("addTask", entryOne).then(() => {
-      expect (store.state.taskModule.tasks.length).toBe(1);
+      expect (store.getters.getTasks.length).toBe(1);
       done();
     });
   })
