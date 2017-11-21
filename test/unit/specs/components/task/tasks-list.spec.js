@@ -34,4 +34,28 @@ describe('tasks-list', () => {
      vm.$el.querySelector('.tasks-list ul .delete-task').click();
      expect(spy).toHaveBeenCalledWith('deleteTask', entryOne);
   });
+
+
+  it("add button should emit addTask on-click ", (done) => {
+    const Constructor = Vue.extend(tasksList);
+    let taskName = "task 4";
+    let tasks = [];
+
+    const vm = new Constructor({
+       propsData: { tasks }
+     }).$mount();
+
+     vm.$on("addTask", (task)=> {
+       tasks.push(task);
+     })
+
+     vm.enteredTask = taskName;
+     Vue.nextTick(() => {
+       vm.$el.querySelector('.tasks-list button').click();
+       expect(tasks.length).toBe(1);
+       expect(tasks[0].name).toBe(taskName);
+       expect(tasks[0].isComplete).toBe(false);
+       done();
+     })
+  });
 })

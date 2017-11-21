@@ -18,13 +18,13 @@ module.exports = function (config) {
     files: [
       '../../node_modules/babel-polyfill/dist/polyfill.js',
       './index.js',
-      '../../src/**/*.vue',
-      '../../src/**/*.js'
+      //'../../src/**/*.vue',
+      //'../../src/**/*.js'
     ],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap'],
-      '../../src/**/*.vue': ['webpack', 'coverage'],
-      '../../src/**/*.js': ['webpack', 'coverage']
+      //'../../src/**/*.vue': ['webpack', 'coverage'],
+      //'../../src/**/*.js': ['webpack', 'coverage']
           },
     webpack: webpackConfig,
     webpackMiddleware: {
