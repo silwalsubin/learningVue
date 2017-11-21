@@ -1,7 +1,9 @@
 <template>
   <div class = "statusReporter">
-    <h3 v-show="status.total > 0" :title = "totalReport">{{totalReport}}</h3>
-    <h4 v-show="status.total > 0" :title = "statusDescription">{{statusDescription}}</h4>
+    <h3 v-show="status.total > 0"
+        :title = "totalReport">{{totalReport}}</h3>
+    <h4 v-show="status.total > 0"
+        :title = "statusDescription">{{statusDescription}}</h4>
   </div>
 </template>
 

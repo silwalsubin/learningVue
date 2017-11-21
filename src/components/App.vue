@@ -8,7 +8,7 @@
 
 <script>
 import Welcome from './Welcome'
-import Tasks from './Tasks'
+import Tasks from './task/Tasks'
 
 export default {
   name: 'app',
