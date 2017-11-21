@@ -1,7 +1,7 @@
 <template>
   <div id="tasks">
     <statusReporter :status="tasksStatus"/>
-    <tasksList :tasks="tasks"
+    <tasks-list :tasks="tasks"
                @addTask="addTask"
                @deleteTask="deleteTask"
                @taskCompletionStatus="taskCompletionStatus"/>
@@ -10,9 +10,9 @@
 
 <script>
 
-import StatusReporter from '../StatusReporter'
-import TasksList from './TasksList'
-import store from '../store'
+import statusReporter from '../status-reporter'
+import tasksList from './tasks-list'
+import store from '../../store'
 
 export default {
   name: 'tasks',
@@ -37,8 +37,8 @@ export default {
   },
   store,
   components: {
-    StatusReporter,
-    TasksList
+    statusReporter,
+    tasksList
   }
 }
 store.dispatch('getTasksData');

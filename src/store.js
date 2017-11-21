@@ -1,7 +1,7 @@
 import vue from 'vue';
 import vuex from 'vuex';
 
-import taskModule from './task/store/taskModule'
+import taskModule from './components/task/store'
 
 vue.use(vuex);
 

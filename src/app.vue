@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-    <img src="../assets/myApp.png">
+    <img src="./assets/myApp.png">
     <welcome/>
     <tasks/>
   </div>
 </template>
 
 <script>
-import Welcome from './Welcome'
-import Tasks from './task/Tasks'
+import welcome from './components/welcome'
+import tasks from './components/task/tasks'
 
 export default {
   name: 'app',
   components: {
-    Welcome,
-    Tasks
+    welcome,
+    tasks
   }
 }
 </script>

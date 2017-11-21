@@ -1,5 +1,5 @@
 <template>
-  <div class = "statusReporter">
+  <div class = "status-reporter">
     <h3 v-show="status.total > 0"
         :title = "totalReport">{{totalReport}}</h3>
     <h4 v-show="status.total > 0"
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'statusReporter',
+  name: 'status-reporter',
   props:{
     status: {
       type: Object,

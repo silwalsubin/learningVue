@@ -1,5 +1,5 @@
 <template>
-  <div class = "tasksList">
+  <div class = "tasks-list">
       <input type="text" v-model="enteredTask" placeholder="Enter a task"/>
       <button @click="addTask">Add</button>
     <ul v-for="task in tasks">
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "tasksList",
+  name: "tasks-list",
   props: {
     tasks: {
       type: Array,

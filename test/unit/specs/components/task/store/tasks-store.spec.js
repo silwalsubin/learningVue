@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import store from "@/components/store";
+import store from "@/store";
 
-describe ('Task Store Test: ', () => {
+describe ('task-store test: ', () => {
 
   let expectedArray = [];
   let entryOne = {name: "task 1", isComplete: false};
