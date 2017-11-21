@@ -5,7 +5,7 @@
     <ul v-for="task in tasks">
         <li>{{task.name}}</li>
         <button @click="markCompleteIncomplete(task)">{{task.isComplete ? "Rework" : "Completed"}}</button>
-        <button @click="deleteTask(task)">Delete</button>
+        <button class = "delete-task" @click="deleteTask(task)">Delete</button>
     </ul>
   </div>
 </template>
@@ -34,6 +34,7 @@ export default {
         this.enteredTask = '';
     },
     markCompleteIncomplete(task){
+      this.deleteTask(task);
         this.$emit("taskCompletionStatus", task);
     }
   }

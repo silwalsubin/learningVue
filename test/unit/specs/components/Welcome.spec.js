@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import welcome from '@/components/welcome'
 
-describe('welcome.vue', () => {
+describe('welcome', () => {
   it('should render correct welcome message', () => {
     const Constructor = Vue.extend(welcome);
     const vm = new Constructor().$mount();

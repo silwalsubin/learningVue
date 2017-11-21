@@ -14,6 +14,7 @@ export default {
      var url = "http://localhost:8080/static/todos.json";
      axios.get(url).then(response => {
        context.commit('setTasks', response.data);
+     }).catch(() => {
      });
   }
 }
