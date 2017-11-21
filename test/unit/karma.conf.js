@@ -5,6 +5,7 @@
 
 var webpackConfig = require('../../build/webpack.test.conf')
 
+
 module.exports = function (config) {
   config.set({
     // to run in additional browsers:
@@ -16,11 +17,15 @@ module.exports = function (config) {
     reporters: ['spec', 'coverage'],
     files: [
       '../../node_modules/babel-polyfill/dist/polyfill.js',
-      './index.js'
+      './index.js',
+      '../../src/**/*.vue',
+      '../../src/**/*.js'
     ],
     preprocessors: {
-      './index.js': ['webpack', 'sourcemap']
-    },
+      './index.js': ['webpack', 'sourcemap'],
+      '../../src/**/*.vue': ['webpack', 'coverage'],
+      '../../src/**/*.js': ['webpack', 'coverage']
+          },
     webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true
