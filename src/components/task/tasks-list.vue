@@ -34,8 +34,8 @@ export default {
         this.enteredTask = '';
     },
     markCompleteIncomplete(task){
-      this.deleteTask(task);
         this.$emit("taskCompletionStatus", task);
+        this.enteredTask = '';
     }
   }
 }
