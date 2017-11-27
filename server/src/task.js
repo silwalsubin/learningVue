@@ -3,19 +3,12 @@ const cors = require('cors');
 const task = express();
 task.use(cors());
 
+
+const taskRepo = require('../persistence/task');
 const index = require('./index');
 
-let tasks = [
-              {"name": "task 1", "isComplete": false },
-              {"name": "task 2", "isComplete": false },
-              {"name": "task 3", "isComplete": false },
-              {"name": "task 4", "isComplete": false },
-              {"name": "task 5", "isComplete": true },
-              {"name": "task 6", "isComplete": true }
-            ];
-
 task.get('/tasks', (req, res) => {
-  res.send(tasks);
+  res.send(taskRepo.getTasks());
 });
 
 task.listen(index.port, () => {
