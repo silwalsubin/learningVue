@@ -19,6 +19,7 @@ export default {
   methods: {
     addTask(task){
       this.$store.dispatch('addTask', task);
+        this.$store.dispatch('getTasksData');
     },
     deleteTask(task){
       this.$store.dispatch('deleteTask', task);

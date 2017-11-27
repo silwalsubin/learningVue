@@ -9,16 +9,20 @@ task.use(bodyParser.json());
 const taskRepo = require('../persistence/task');
 const index = require('./index');
 
-task.get('/tasks', (req, res) => {
-  res.send(taskRepo.getTasks());
+task.get('/getTasks', (req, res) => {
+  res.send(taskRepo.getAll());
 });
 
-task.post('/task', (req, res) => {
+task.post('/addTask', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.send(taskRepo.addTask(req.body));
+  res.send(taskRepo.add(req.body));
+});
+
+task.post('/deleteTask', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(taskRepo.delete(req.body));
 });
 
 task.listen(index.port, () => {
-  //taskRepo.addTask({name :"Subin", isComplete : true});
   console.log('Example app listening on port ' + index.port);
 });

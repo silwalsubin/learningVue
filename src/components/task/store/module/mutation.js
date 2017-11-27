@@ -2,9 +2,7 @@ import axios from 'axios';
 
 export default{
   addTask: (state, payload) => {
-    //state.tasks.push(payload);
-    var url = "http://localhost:3000/task";
-    console.log(payload);
+    var url = "http://localhost:3000/addTask";
     axios.post(url, payload)
     .then(function (response) {
       console.log(response);
@@ -14,7 +12,15 @@ export default{
     });
   },
   deleteTask: (state, payload) => {
-    state.tasks.splice(state.tasks.indexOf(payload), 1);
+    var url = "http://localhost:3000/deleteTask";
+    axios.post(url, payload)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    //state.tasks.splice(state.tasks.indexOf(payload), 1);
   },
   changeTaskStatus: (state, payload) => {
     state.tasks[state.tasks.indexOf(payload)].isComplete = !payload.isComplete;

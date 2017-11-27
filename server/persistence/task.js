@@ -3,7 +3,7 @@ let db = new jsonDb("./database/todos", true, false);
 
 
 module.exports = {
-  getTasks: function(){
+  getAll: function(){
     try {
       return db.getData('/').tasks;
     }
@@ -11,9 +11,26 @@ module.exports = {
       console.error(error);
     }
   },
-  addTask: function(task){
+  add: function(task){
     try {
       db.push("/tasks[]", task, true);
+    }
+    catch (error){
+      console.error(error);
+    }
+  },
+  delete: function(task){
+    let tasks = db.getData('/').tasks;
+    let index = -1;
+    for(x in tasks){
+      if (task.name === tasks[x].name && task.isComplete === tasks[x].isComplete){
+        index = x;
+      }
+    }
+    try{
+      let indexedValue = "/tasks["+ index +"]";
+      db.delete(indexedValue);
+
     }
     catch (error){
       console.error(error);

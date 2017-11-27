@@ -11,7 +11,7 @@ export default {
     context.commit('changeTaskStatus', payload);
   },
   getTasksData: (context) => {
-     var url = "http://localhost:3000/tasks";
+     var url = "http://localhost:3000/getTasks";
      axios.get(url).then(response => {
        context.commit('setTasks', response.data);
      }).catch(() => {
