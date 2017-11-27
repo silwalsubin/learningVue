@@ -1,13 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const task = express();
 const bodyParser = require('body-parser');
+
+const task = express();
 task.use(cors());
 task.use(bodyParser.json());
 
 
-const taskRepo = require('../persistence/task');
-const index = require('./index');
+const taskRepo = require('./persistence/task-repository');
+const config = require('./config');
 
 task.get('/getTasks', (req, res) => {
   res.send(taskRepo.getAll());
@@ -23,6 +24,6 @@ task.post('/deleteTask', (req, res) => {
   res.send(taskRepo.delete(req.body));
 });
 
-task.listen(index.port, () => {
-  console.log('Example app listening on port ' + index.port);
+task.listen(config.port, () => {
+  console.log('Example app listening on port ' + config.port);
 });

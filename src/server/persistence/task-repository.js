@@ -28,9 +28,10 @@ module.exports = {
       }
     }
     try{
-      let indexedValue = "/tasks["+ index +"]";
-      db.delete(indexedValue);
-
+      if (index !== -1){
+        let indexedValue = "/tasks["+ index +"]";
+        db.delete(indexedValue);
+      }
     }
     catch (error){
       console.error(error);
