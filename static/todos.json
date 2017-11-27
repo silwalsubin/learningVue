@@ -1,4 +1,4 @@
-[{
+{"tasks" : [{
 	"name": "task 1",
 	"isComplete": false
 }, {
@@ -18,3 +18,4 @@
 	"isComplete": true
 }
 ]
+}
