@@ -1,5 +1,5 @@
-const tasks = require ('express').Router();
-const taskRepo = require('../persistence/task-repository');
+let tasks = require ('express').Router();
+import taskRepo from '../persistence/task-repository';
 
 tasks.post('/add', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
@@ -20,4 +20,4 @@ tasks.get('/getAll', (req, res) => {
   res.send(taskRepo.getAll());
 });
 
-module.exports = tasks;
+export default tasks;

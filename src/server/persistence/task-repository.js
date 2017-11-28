@@ -1,58 +1,38 @@
-let jsonDb = require ('node-json-db');
+import jsonDb from 'node-json-db';
 let db = new jsonDb("./database/todos", true, false);
 
 
-module.exports = {
-  getAll: function(){
-    try {
-      return db.getData('/').tasks;
-    }
-    catch (error){
-      console.error(error);
-    }
+export default {
+  getAll: () => {
+    return db.getData('/').tasks;
   },
-  add: function(task){
-    try {
-      db.push("/tasks[]", task, true);
-    }
-    catch (error){
-      console.error(error);
-    }
+  add: (task) => {
+    db.push("/tasks[]", task, true);
   },
-  changeStatus: function(task){
+  changeStatus: (task) => {
     let tasks = db.getData('/').tasks;
     let index = -1;
-    for(x in tasks){
+    for(var x in tasks){
       if (task.name === tasks[x].name && task.isComplete === tasks[x].isComplete){
         index = x;
       }
     }
-    try{
-      if (index !== -1){
-        let indexedValue = "/tasks["+ index +"]/isComplete";
-        db.push(indexedValue, !task.isComplete, true);
-      }
-    }
-    catch (error){
-      console.error(error);
+    if (index !== -1){
+      let indexedValue = "/tasks["+ index +"]/isComplete";
+      db.push(indexedValue, !task.isComplete, true);
     }
   },
-  delete: function(task){
+  delete: (task) => {
     let tasks = db.getData('/').tasks;
     let index = -1;
-    for(x in tasks){
+    for(var x in tasks){
       if (task.name === tasks[x].name && task.isComplete === tasks[x].isComplete){
         index = x;
       }
     }
-    try{
-      if (index !== -1){
-        let indexedValue = "/tasks["+ index +"]";
-        db.delete(indexedValue);
-      }
-    }
-    catch (error){
-      console.error(error);
+    if (index !== -1){
+      let indexedValue = "/tasks["+ index +"]";
+      db.delete(indexedValue);
     }
   }
 }
