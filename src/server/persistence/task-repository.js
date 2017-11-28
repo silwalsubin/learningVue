@@ -20,7 +20,6 @@ module.exports = {
     }
   },
   changeStatus: function(task){
-    console.log(task);
     let tasks = db.getData('/').tasks;
     let index = -1;
     for(x in tasks){
