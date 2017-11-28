@@ -19,11 +19,9 @@ export default {
   methods: {
     addTask(task){
       this.$store.dispatch('addTask', task);
-        this.$store.dispatch('getTasksData');
     },
     deleteTask(task){
       this.$store.dispatch('deleteTask', task);
-      this.$store.dispatch('getTasksData');
     },
     taskCompletionStatus(task){
       this.$store.dispatch('changeTaskStatus', task);

@@ -19,6 +19,25 @@ module.exports = {
       console.error(error);
     }
   },
+  changeStatus: function(task){
+    console.log(task);
+    let tasks = db.getData('/').tasks;
+    let index = -1;
+    for(x in tasks){
+      if (task.name === tasks[x].name && task.isComplete === tasks[x].isComplete){
+        index = x;
+      }
+    }
+    try{
+      if (index !== -1){
+        let indexedValue = "/tasks["+ index +"]/isComplete";
+        db.push(indexedValue, !task.isComplete, true);
+      }
+    }
+    catch (error){
+      console.error(error);
+    }
+  },
   delete: function(task){
     let tasks = db.getData('/').tasks;
     let index = -1;

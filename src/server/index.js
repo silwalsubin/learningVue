@@ -24,6 +24,11 @@ task.post('/deleteTask', (req, res) => {
   res.send(taskRepo.delete(req.body));
 });
 
+task.post('/changeStatus', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(taskRepo.changeStatus(req.body));
+});
+
 task.listen(config.port, () => {
   console.log('Example app listening on port ' + config.port);
 });
