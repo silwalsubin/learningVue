@@ -26,15 +26,15 @@ export default {
   },
   methods: {
     addTask(){
-        this.$emit("addTask", {name:this.enteredTask, isComplete: false});
+        this.$emit("addTask", this.enteredTask);
         this.enteredTask = '';
     },
     deleteTask(task){
-        this.$emit("deleteTask", task);
+        this.$emit("deleteTask", task.id);
         this.enteredTask = '';
     },
     markCompleteIncomplete(task){
-        this.$emit("taskCompletionStatus", task);
+        this.$emit("taskCompletionStatus", task.id);
         this.enteredTask = '';
     }
   }

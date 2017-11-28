@@ -17,14 +17,14 @@ import store from '../../store'
 export default {
   name: 'tasks',
   methods: {
-    addTask(task){
-      this.$store.dispatch('addTask', task);
+    addTask(name){
+      this.$store.dispatch('addTask', name);
     },
-    deleteTask(task){
-      this.$store.dispatch('deleteTask', task);
+    deleteTask(id){
+      this.$store.dispatch('deleteTask', id);
     },
-    taskCompletionStatus(task){
-      this.$store.dispatch('changeTaskStatus', task);
+    taskCompletionStatus(id){
+      this.$store.dispatch('changeTaskStatus', id);
     }
   },
   computed: {

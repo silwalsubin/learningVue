@@ -1,6 +1,6 @@
 import jsonDb from 'node-json-db';
+import _ from 'lodash';
 let db = new jsonDb("./database/todos", true, false);
-
 
 export default {
   getAll: () => {
@@ -9,30 +9,13 @@ export default {
   add: (task) => {
     db.push("/tasks[]", task, true);
   },
-  changeStatus: (task) => {
+  changeStatus: (id) => {
     let tasks = db.getData('/').tasks;
-    let index = -1;
-    for(var x in tasks){
-      if (task.name === tasks[x].name && task.isComplete === tasks[x].isComplete){
-        index = x;
-      }
-    }
-    if (index !== -1){
-      let indexedValue = "/tasks["+ index +"]/isComplete";
-      db.push(indexedValue, !task.isComplete, true);
-    }
+    let index = tasks.findIndex(x => x.id === id);
+    db.push(`/tasks[${index}]/isComplete`, !tasks[index].isComplete, true);
   },
-  delete: (task) => {
+  delete: (id) => {
     let tasks = db.getData('/').tasks;
-    let index = -1;
-    for(var x in tasks){
-      if (task.name === tasks[x].name && task.isComplete === tasks[x].isComplete){
-        index = x;
-      }
-    }
-    if (index !== -1){
-      let indexedValue = "/tasks["+ index +"]";
-      db.delete(indexedValue);
-    }
+    db.delete(`/tasks[${tasks.findIndex(x => x.id === id)}]`);
   }
 }
