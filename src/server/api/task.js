@@ -14,7 +14,6 @@ tasks.post('/changeStatus', (req, res) => {
 tasks.post('/delete', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(taskRepo.delete(req.body.data));
-  console.log(req.body.data);
 });
 
 tasks.get('/getAll', (req, res) => {
