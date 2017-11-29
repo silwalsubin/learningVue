@@ -77,7 +77,6 @@
     "selenium-server": "^3.0.1",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
-    "sinon": "^4.0.0",
     "sinon-chai": "^2.8.0",
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",

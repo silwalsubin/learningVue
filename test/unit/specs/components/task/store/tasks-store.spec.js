@@ -1,64 +1,30 @@
 import Vue from 'vue'
 import store from "@/store";
+import uuid from 'uuid';
+
 
 describe ('task-store', () => {
 
-  let expectedArray = [];
-  let entryOne = {name: "task 1", isComplete: false};
-  let entryTwo = {name: "task 2", isComplete: true };
-  let entryThree = {name: "task 3", isComplete: true };
+  let task1 = {name: "task 1", id: 1234, isComplete: false};
+  let task2 = {name: "task 2", id: 2234, isComplete: true};
 
-  it('dispatch: addTask', done => {
-    store.dispatch("addTask", entryOne).then(() => {
-      expect (store.getters.getTasks.length).toBe(1);
-      done();
-    });
-  })
-
-  it('getter: getTasksStatusReport', done => {
-    store.dispatch("addTask", entryTwo).then(() => {
-      expect (store.getters.getTasksStatusReport.total).toBe(2);
-      expect (store.getters.getTasksStatusReport.complete).toBe(1);
-      expect (store.getters.getTasksStatusReport.toDo).toBe(1);
-      store.dispatch("addTask", entryThree).then(() => {
-        expect (store.getters.getTasksStatusReport.total).toBe(3);
-        expect (store.getters.getTasksStatusReport.complete).toBe(2);
-        expect (store.getters.getTasksStatusReport.toDo).toBe(1);
-        done();
-      })
-      done();
-    })
+  it('should add a task', () => {
+    store.commit('addTask', task1);
+    expect (store.getters.getTasks.length).toBe(1);
   });
 
-  it('getter: getTasks', done => {
-    expectedArray.push(entryOne);
-    expectedArray.push(entryTwo);
-    expectedArray.push(entryThree);
-    expect (store.getters.getTasks).toEqual(expectedArray);
-    done();
+  it('should change the status', () => {
+    store.commit('changeTaskStatus', task1.id);
+    expect (store.getters.getTasks.find(x => x.id === task1.id).isComplete).toBe(true);
   });
 
-  it('dispatch: deleteTask', done => {
-    store.dispatch("deleteTask", entryTwo).then(() => {
-      expect (store.getters.getTasksStatusReport.total).toBe(2);
-      expect (store.getters.getTasksStatusReport.complete).toBe(1);
-      expect (store.getters.getTasksStatusReport.toDo).toBe(1);
-      store.dispatch("deleteTask", entryThree).then(() => {
-        expect (store.getters.getTasksStatusReport.total).toBe(1);
-        expect (store.getters.getTasksStatusReport.complete).toBe(0);
-        expect (store.getters.getTasksStatusReport.toDo).toBe(1);
-        done();
-      })
-      done();
-    })
+  it('should delete a task', () => {
+    store.commit('deleteTask', task1.id);
+    expect (store.getters.getTasks.length).toBe(0);
   });
 
-  it('dispatch: changeTaskStatus', done => {
-    store.dispatch("changeTaskStatus", entryOne).then(() => {
-      expect (store.getters.getTasksStatusReport.total).toBe(1);
-      expect (store.getters.getTasksStatusReport.complete).toBe(1);
-      expect (store.getters.getTasksStatusReport.toDo).toBe(0);
-      done();
-    })
+  it('should load all tasks', () => {
+    store.commit('setTasks', [task1, task2]);
+    expect (store.getters.getTasks.length).toBe(2);
   });
 })

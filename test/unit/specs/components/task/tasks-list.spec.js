@@ -3,9 +3,9 @@ import tasksList from '@/components/task/tasks-list'
 
 describe('tasks-list', () => {
 
-  let entryOne = {name: "task 1", isComplete: false};
-  let entryTwo = {name: "task 2", isComplete: true };
-  let entryThree = {name: "task 3", isComplete: true };
+  let entryOne = {name: "task 1", isComplete: false, id: 123};
+  let entryTwo = {name: "task 2", isComplete: true, id: 321 };
+  let entryThree = {name: "task 3", isComplete: true, id: 345 };
   const tasks = [entryOne, entryTwo, entryThree];
 
   it("tasksList should render correct number of tasks", done => {
@@ -32,29 +32,27 @@ describe('tasks-list', () => {
      const spy = spyOn (vm, '$emit');
 
      vm.$el.querySelector('.tasks-list ul .delete-task').click();
-     expect(spy).toHaveBeenCalledWith('deleteTask', entryOne);
+     expect(spy).toHaveBeenCalledWith('deleteTask', entryOne.id);
   });
 
 
   it("add button should emit addTask on-click ", (done) => {
     const Constructor = Vue.extend(tasksList);
     let taskName = "task 4";
-    let tasks = [];
+    let emittedParameter = "";
 
     const vm = new Constructor({
        propsData: { tasks }
      }).$mount();
 
-     vm.$on("addTask", (task)=> {
-       tasks.push(task);
+     vm.$on("addTask", (taskName)=> {
+       emittedParameter = taskName;
      })
 
      vm.enteredTask = taskName;
      Vue.nextTick(() => {
        vm.$el.querySelector('.tasks-list button').click();
-       expect(tasks.length).toBe(1);
-       expect(tasks[0].name).toBe(taskName);
-       expect(tasks[0].isComplete).toBe(false);
+       expect(emittedParameter).toBe(taskName);
        done();
      })
   });

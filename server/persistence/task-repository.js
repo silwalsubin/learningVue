@@ -1,5 +1,4 @@
 import jsonDb from 'node-json-db';
-import _ from 'lodash';
 let db = new jsonDb("./database/todos", true, false);
 
 export default {
