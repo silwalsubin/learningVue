@@ -1,15 +1,20 @@
 import axios from 'axios';
 import uuid from 'uuid';
 
+const baseUrl = "http://localhost:3000/task";
+
+function getUrl(methodName) {
+    return baseUrl + methodName;
+}
+
 export default {
   addTask: (context, payload) => {
-    var url = "http://localhost:3000/task/add";
     let task = {
       id : uuid(),
       name : payload,
       isComplete : false
     }
-    axios.post(url, {
+    axios.post(getUrl("/add"), {
       data: task
     })
     .then(() => {
@@ -20,8 +25,7 @@ export default {
     });
   },
   deleteTask: (context, payload) => {
-    var url = "http://localhost:3000/task/delete";
-    axios.post(url, {
+    axios.post(getUrl("/delete"), {
       data: payload
     })
     .then(() => {
@@ -32,8 +36,7 @@ export default {
     });
   },
   changeTaskStatus: (context, payload) => {
-    var url = "http://localhost:3000/task/changeStatus";
-    axios.post(url, {
+    axios.post(getUrl("/changeStatus"), {
       data: payload
     })
     .then(() => {
@@ -44,8 +47,7 @@ export default {
     });
   },
   getTasksData: (context) => {
-     var url = "http://localhost:3000/task/getAll";
-     axios.get(url)
+     axios.get(getUrl("/getAll"))
      .then(response => {
        context.commit('setTasks', response.data);
      })
