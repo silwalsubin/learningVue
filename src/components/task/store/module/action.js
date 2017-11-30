@@ -45,9 +45,11 @@ export default {
   },
   getTasksData: (context) => {
      var url = "http://localhost:3000/task/getAll";
-     axios.get(url).then(response => {
+     axios.get(url)
+     .then(response => {
        context.commit('setTasks', response.data);
-     }).catch((error) => {
+     })
+     .catch((error) => {
      console.log(error);
    });
   }
