@@ -5,7 +5,7 @@ import statusReporter from '@/components/status-reporter'
 
 describe('status-reporter', () => {
 
-  it('status report for multiple tasks should be correct.', (done) => {
+  it('multiple tasks should be displayed correctly.', (done) => {
     const Constructor = Vue.extend(statusReporter);
     let testStatus = { complete: 20, toDo: 15, total: 35 }
 
@@ -27,7 +27,7 @@ describe('status-reporter', () => {
     })
   }),
 
-  it('status report for single task should be correct.', (done) => {
+  it('single task should be displayed correctly.', (done) => {
     const Constructor = Vue.extend(statusReporter);
     let testStatus = { complete: 1, toDo: 0, total: 1 }
 

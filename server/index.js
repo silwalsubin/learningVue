@@ -4,8 +4,8 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import taskApi from './api/task';
 
-const port = config.port
-const app = express();
+let port = config.port
+let app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
