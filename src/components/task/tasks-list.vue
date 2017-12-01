@@ -1,12 +1,21 @@
 <template>
   <div class = "tasks-list">
-      <input type="text" v-model="enteredTask" placeholder="Enter a task"/>
-      <button @click="addTask">Add</button>
-    <ul v-for="task in tasks">
-        <li>{{task.name}}</li>
-        <button @click="markCompleteIncomplete(task)">{{task.isComplete ? "Rework" : "Completed"}}</button>
-        <button class = "delete-task" @click="deleteTask(task)">Delete</button>
-    </ul>
+    <span class="inputTask">
+      <input class="input" type="text" v-model="enteredTask" placeholder="Enter a task"/>
+      <button class = "button is-success" @click="addTask">Add</button>
+    </span>
+    <div class="taskList">
+      <article class="message is-small" v-for="task in tasks">
+        <div class="message-header">
+          <p>{{task.name}}</p>
+          <div class="buttons has-addons">
+            <span class="button">Edit</span>
+            <span class="button" @click="markCompleteIncomplete(task)">{{task.isComplete ? "Rework" : "Completed"}}</span>
+            <span class="button " @click="deleteTask(task)">Delete</span>
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 </template>
 
@@ -43,6 +52,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "../../../node_modules/bulma/css/bulma.css";
+
+.input {
+  max-width: 300px;
+}
+
+
+.taskList{
+  margin-top: 20px;
+}
+
+article {
+  max-width: 600px;
+  margin: auto;
+}
+/*
 h1, h2 {
   font-weight: normal;
   font-family: "Times New Roman", Times, serif;
@@ -61,4 +86,5 @@ li {
 a {
   color: #42b983;
 }
+*/
 </style>

@@ -56,4 +56,26 @@ describe('tasks-list', () => {
        done();
      })
   });
+
+  it("clicking any buttons should clear out the input textbox ", done => {
+    const Constructor = Vue.extend(tasksList);
+    let taskName = "task 5";
+    const vm = new Constructor({
+       propsData: { tasks }
+     }).$mount();
+
+     Vue.nextTick(() => {
+       vm.enteredTask = taskName;
+       vm.$el.querySelector('.tasks-list button').click();
+       expect(vm.enteredTask).toBe("");
+       vm.enteredTask = taskName;
+       vm.$el.querySelector('.tasks-list ul .delete-task').click();
+       expect(vm.enteredTask).toBe("");
+       vm.enteredTask = taskName;
+       vm.$el.querySelector('.tasks-list ul button').click();
+       expect(vm.enteredTask).toBe("");
+       done();
+     })
+  });
+
 })

@@ -10,6 +10,7 @@
 import welcome from './components/welcome'
 import tasks from './components/task/tasks'
 
+
 export default {
   name: 'app',
   components: {
@@ -20,6 +21,13 @@ export default {
 </script>
 
 <style>
+@import "../node_modules/bulma/css/bulma.css";
+#app {
+  text-align: center;
+  margin-top: 60px;
+}
+
+/*
 #app {
   font-family: "Times New Roman", Times, serif;
   -webkit-font-smoothing: antialiased;
@@ -33,4 +41,5 @@ h3 {
   font-weight: normal;
   font-family: "Times New Roman", Times, serif;
 }
+*/
 </style>

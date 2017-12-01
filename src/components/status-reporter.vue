@@ -1,10 +1,18 @@
 <template>
-  <div class = "status-reporter">
-    <h3 v-show="status.total > 0"
-        :title = "totalReport">{{totalReport}}</h3>
-    <h4 v-show="status.total > 0"
-        :title = "statusDescription">{{statusDescription}}</h4>
+  <nav class="level" v-show="status.total > 0">
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">To Do</p>
+      <p class="title">{{status.toDo}}</p>
+    </div>
   </div>
+  <div class="level-item has-text-centered" >
+    <div>
+      <p class="heading">Done</p>
+      <p class="title">{{status.complete}}</p>
+    </div>
+  </div>
+</nav>
 </template>
 
 <script>
@@ -35,6 +43,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "../../node_modules/bulma/css/bulma.css";
+/*
 h1, h2, h4 {
   font-weight: normal;
   font-family: "Times New Roman", Times, serif;
@@ -52,5 +62,5 @@ li {
 
 a {
   color: #42b983;
-}
+}*/
 </style>

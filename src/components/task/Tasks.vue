@@ -44,7 +44,10 @@ export default {
 store.dispatch('getTasksData');
 </script>
 
-<style>
+<style scoped>
+@import "../../../node_modules/bulma/css/bulma.css";
+
+/*
 #app {
   font-family: "Times New Roman", Times, serif;
   -webkit-font-smoothing: antialiased;
@@ -58,4 +61,5 @@ h3 {
   font-weight: normal;
   font-family: "Times New Roman", Times, serif;
 }
+*/
 </style>
