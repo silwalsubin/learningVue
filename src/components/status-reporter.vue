@@ -3,13 +3,13 @@
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">To Do</p>
-      <p class="title">{{status.toDo}}</p>
+      <p class="title toDo">{{status.toDo}}</p>
     </div>
   </div>
   <div class="level-item has-text-centered" >
     <div>
       <p class="heading">Done</p>
-      <p class="title">{{status.complete}}</p>
+      <p class="title complete">{{status.complete}}</p>
     </div>
   </div>
 </nav>
@@ -21,7 +21,7 @@ export default {
   props:{
     status: {
       type: Object,
-      default() {
+      default() { 
         return {
           complete: 0,
           toDo: 0,
