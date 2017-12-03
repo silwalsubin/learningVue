@@ -7,7 +7,7 @@
     <div class="taskList">
       <article class="message is-small" v-for="task in tasks">
         <div class="message-header">
-          <input :id="task.id" :class="inputBoxCss" type="text" v-model="task.name"/>
+          <input :id="task.id" class="input message-header taskNameInput" type="text" v-model="task.name"/>
           <div class="buttons has-addons">
             <span class="changeStatus button" @click="changeStatus(task)">
               {{task.isComplete ? "Rework" : "Completed"}}
@@ -34,7 +34,7 @@ export default {
   data () {
     return {
       enteredTask: '',
-      inputBoxCssValue: 'input message-header inputDisabled',
+      inputBoxCssValue: '',
       textBoxReadOnly: true
     }
   },
@@ -53,15 +53,6 @@ export default {
     },
     changeTextBoxCss(){
       this.inputBoxCssValue = 'input message-header';
-      this.textBoxReadOnly = false;
-    }
-  },
-  computed: {
-    inputBoxCss() {
-      return this.inputBoxCssValue;
-    },
-    isTextBoxReadOnly() {
-      return this.textBoxReadOnly;
     }
   }
 }
@@ -75,17 +66,17 @@ export default {
   max-width: 300px;
 }
 
-.inputDisabled {
+.taskNameInput {
   border: none;
 }
 
-.inputDisabled:hover {
+.taskNameInput:hover {
   background-color: white;
   color: black;
   border: 1px solid black;
 }
 
-.inputDisabled:focus {
+.taskNameInput:focus {
   border: none;
 }
 
