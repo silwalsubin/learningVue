@@ -7,11 +7,14 @@
     <div class="taskList">
       <article class="message is-small" v-for="task in tasks">
         <div class="message-header">
-          <input :id="task.id" :class="inputBoxCss" type="text" v-model="task.name" :readonly="isTextBoxReadOnly"/>
+          <input :id="task.id" :class="inputBoxCss" type="text" v-model="task.name"/>
           <div class="buttons has-addons">
-            <span class="editButton button" @click="changeTextBoxCss">Edit</span>
-            <span class="changeStatus button" @click="changeStatus(task)">{{task.isComplete ? "Rework" : "Completed"}}</span>
-            <span class="deleteButton button" @click="deleteTask(task)">Delete</span>
+            <span class="changeStatus button" @click="changeStatus(task)">
+              {{task.isComplete ? "Rework" : "Completed"}}
+            </span>
+            <span class="deleteButton button" @click="deleteTask(task)">
+              Delete
+            </span>
           </div>
         </div>
       </article>
@@ -76,12 +79,22 @@ export default {
   border: none;
 }
 
+.inputDisabled:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.inputDisabled:focus {
+  border: none;
+}
+
 .taskList{
   margin-top: 20px;
 }
 
 article {
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
 }
 </style>
