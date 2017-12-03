@@ -54,5 +54,16 @@ export default {
      .catch((error) => {
      console.log(error);
    });
-  }
+ },
+ updateTask: (context, payload) => {
+   axios.post(getUrl("/update"), {
+     data: payload
+   })
+   .then (() => {
+     context.commit('updateTask', payload);
+   })
+   .catch(() => {
+     console.log(error);
+   });
+ }
 }
