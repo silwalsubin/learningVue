@@ -1,5 +1,5 @@
 <template>
-  <nav class="level" v-show="status.total > 0">
+  <nav class="level">
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">To Do</p>
@@ -21,7 +21,7 @@ export default {
   props:{
     status: {
       type: Object,
-      default() { 
+      default() {
         return {
           complete: 0,
           toDo: 0,
