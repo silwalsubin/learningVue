@@ -7,9 +7,9 @@
     <div class="taskList">
       <article class="message is-small" v-for="task in tasks">
         <div class="message-header">
-          <p>{{task.name}}</p>
+          <input :id="task.id" :class="inputBoxCss" type="text" v-model="task.name" :readonly="isTextBoxReadOnly"/>
           <div class="buttons has-addons">
-            <span class="editButton button">Edit</span>
+            <span class="editButton button" @click="changeTextBoxCss">Edit</span>
             <span class="changeStatus button" @click="changeStatus(task)">{{task.isComplete ? "Rework" : "Completed"}}</span>
             <span class="deleteButton button" @click="deleteTask(task)">Delete</span>
           </div>
@@ -30,7 +30,9 @@ export default {
   },
   data () {
     return {
-      enteredTask: ''
+      enteredTask: '',
+      inputBoxCssValue: 'input message-header inputDisabled',
+      textBoxReadOnly: true
     }
   },
   methods: {
@@ -45,6 +47,18 @@ export default {
     changeStatus(task){
         this.$emit("taskCompletionStatus", task.id);
         this.enteredTask = '';
+    },
+    changeTextBoxCss(){
+      this.inputBoxCssValue = 'input message-header';
+      this.textBoxReadOnly = false;
+    }
+  },
+  computed: {
+    inputBoxCss() {
+      return this.inputBoxCssValue;
+    },
+    isTextBoxReadOnly() {
+      return this.textBoxReadOnly;
     }
   }
 }
@@ -58,6 +72,9 @@ export default {
   max-width: 300px;
 }
 
+.inputDisabled {
+  border: none;
+}
 
 .taskList{
   margin-top: 20px;
@@ -67,24 +84,4 @@ article {
   max-width: 600px;
   margin: auto;
 }
-/*
-h1, h2 {
-  font-weight: normal;
-  font-family: "Times New Roman", Times, serif;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-*/
 </style>
