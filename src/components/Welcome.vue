@@ -13,7 +13,7 @@ export default {
   name: 'welcome',
   data () {
     return {
-      msg: "Welcome to Subin's To-Do App"
+      msg: "Welcome to To-Do App"
     }
   }
 }
