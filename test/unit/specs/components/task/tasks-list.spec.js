@@ -16,11 +16,10 @@ describe('tasks-list', () => {
      }).$mount();
 
     Vue.nextTick(() => {
-       expect(vm.$el.querySelectorAll('.tasks-list ul').length).toBe(tasks.length);
+       expect(vm.$el.querySelectorAll('article').length).toBe(tasks.length);
        done();
     })
   });
-
 
   it("delete button should emit deleteTask on-click ", () => {
     const Constructor = Vue.extend(tasksList);
@@ -31,10 +30,9 @@ describe('tasks-list', () => {
 
      const spy = spyOn (vm, '$emit');
 
-     vm.$el.querySelector('.tasks-list ul .delete-task').click();
+     vm.$el.querySelector('.deleteButton').click();
      expect(spy).toHaveBeenCalledWith('deleteTask', entryOne.id);
   });
-
 
   it("add button should emit addTask on-click ", (done) => {
     const Constructor = Vue.extend(tasksList);
@@ -51,29 +49,8 @@ describe('tasks-list', () => {
 
      vm.enteredTask = taskName;
      Vue.nextTick(() => {
-       vm.$el.querySelector('.tasks-list button').click();
+       vm.$el.querySelector('.button').click();
        expect(emittedParameter).toBe(taskName);
-       done();
-     })
-  });
-
-  it("clicking any buttons should clear out the input textbox ", done => {
-    const Constructor = Vue.extend(tasksList);
-    let taskName = "task 5";
-    const vm = new Constructor({
-       propsData: { tasks }
-     }).$mount();
-
-     Vue.nextTick(() => {
-       vm.enteredTask = taskName;
-       vm.$el.querySelector('.tasks-list button').click();
-       expect(vm.enteredTask).toBe("");
-       vm.enteredTask = taskName;
-       vm.$el.querySelector('.tasks-list ul .delete-task').click();
-       expect(vm.enteredTask).toBe("");
-       vm.enteredTask = taskName;
-       vm.$el.querySelector('.tasks-list ul button').click();
-       expect(vm.enteredTask).toBe("");
        done();
      })
   });

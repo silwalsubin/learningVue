@@ -9,9 +9,9 @@
         <div class="message-header">
           <p>{{task.name}}</p>
           <div class="buttons has-addons">
-            <span class="button">Edit</span>
-            <span class="button" @click="markCompleteIncomplete(task)">{{task.isComplete ? "Rework" : "Completed"}}</span>
-            <span class="button " @click="deleteTask(task)">Delete</span>
+            <span class="editButton button">Edit</span>
+            <span class="changeStatus button" @click="changeStatus(task)">{{task.isComplete ? "Rework" : "Completed"}}</span>
+            <span class="deleteButton button" @click="deleteTask(task)">Delete</span>
           </div>
         </div>
       </article>
@@ -42,7 +42,7 @@ export default {
         this.$emit("deleteTask", task.id);
         this.enteredTask = '';
     },
-    markCompleteIncomplete(task){
+    changeStatus(task){
         this.$emit("taskCompletionStatus", task.id);
         this.enteredTask = '';
     }
