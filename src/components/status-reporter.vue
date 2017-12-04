@@ -41,14 +41,14 @@ export default {
 
 .done-column {
   color: green;
-  font-size: 60px;
-  text-shadow: 2px 2px #a39c9c;
+  font-size: 40px;
+  text-shadow: 1px 1px #a39c9c;
 }
 
 .todo-column {
   color: #e5bd44;
-  font-size: 60px;
-  text-shadow: 2px 2px #a39c9c;
+  font-size: 40px;
+  text-shadow: 1px 1px #a39c9c;
 }
 
 </style>
