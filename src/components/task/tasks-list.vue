@@ -10,7 +10,7 @@
           <input :id="task.id" class="input message-header taskNameInput" @input="updateTask(task)" type="text" v-model="task.name"/>
           <div class="buttons has-addons">
             <span class="changeStatus button" @click="changeStatus(task)">
-              {{task.isComplete ? "Rework" : "Completed"}}
+              {{task.isComplete ? "ToDo" : "Done"}}
             </span>
             <span class="deleteButton button" @click="deleteTask(task)">
               Delete
