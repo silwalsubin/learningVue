@@ -7,7 +7,7 @@
     <div class="taskList">
       <article class="message is-small" v-for="task in tasks">
         <div class="message-header">
-          <input :id="task.id" class="input message-header taskNameInput" @blur="updateTask(task)" type="text" v-model="task.name"/>
+          <input :id="task.id" class="input message-header taskNameInput" @input="updateTask(task)" type="text" v-model="task.name"/>
           <div class="buttons has-addons">
             <span class="changeStatus button" @click="changeStatus(task)">
               {{task.isComplete ? "Rework" : "Completed"}}
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+
 export default {
   name: "tasks-list",
   props: {
@@ -64,7 +65,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "../../../node_modules/bulma/css/bulma.css";
-
 .input {
   max-width: 300px;
 }
