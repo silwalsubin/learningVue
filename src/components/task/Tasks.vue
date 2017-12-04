@@ -35,7 +35,7 @@ export default {
       this.$store.dispatch('changeTaskStatus', id).then(() => {
         let task = this.tasks.find(x => x.id === id)
         let completionStatus = !task.isComplete? "done": "toDo";
-        let message = `Status of task ${task.name} successfully
+        let message = `Task ${task.name} successfully
                        set to "${completionStatus}."`;
         notify(message, this.$toasted);
       });
