@@ -2,7 +2,7 @@
   <nav class="level">
   <div class="level-item has-text-centered">
     <div>
-      <p class="heading">To Do</p>
+      <p class="heading">To-Do</p>
       <p class="title toDo todo-column">{{status.toDo}}</p>
     </div>
   </div>

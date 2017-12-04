@@ -2,7 +2,7 @@
   <section class = "hero welcome">
     <div class="hero-body">
     <div class="container">
-      <h1 class="title" v-bind:title = "msg">{{ msg }}</h1>
+      <h1 class="heading" v-bind:title = "msg">{{ msg }}</h1>
     </div>
   </div>
   </section>
@@ -18,3 +18,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.heading {
+  font-size: 20px;
+}
+
+</style>
