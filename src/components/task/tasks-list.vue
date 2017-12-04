@@ -7,12 +7,13 @@
     <div class="taskList">
       <article class="message is-small" v-for="task in tasks">
         <div class="message-header">
-          <input :id="task.id" class="input message-header taskNameInput" @input="updateTask(task)" type="text" v-model="task.name"/>
+          <input class="input message-header taskNameInput" @input="updateTask(task)"
+                 type="text" v-model="task.name"/>
           <div class="buttons has-addons">
-            <span class="changeStatus button" @click="changeStatus(task)">
+            <span :class="getDoneTodoCss(task)" @click="changeStatus(task)">
               {{task.isComplete ? "ToDo" : "Done"}}
             </span>
-            <span class="deleteButton button is-danger" @click="deleteTask(task)">
+            <span class="deleteButton button is-danger is-inverted" @click="deleteTask(task)">
               Delete
             </span>
           </div>
@@ -54,6 +55,10 @@ export default {
     },
     changeTextBoxCss(){
       this.inputBoxCssValue = 'input message-header';
+    },
+    getDoneTodoCss(task){
+      return task.isComplete === false ?
+      "button is-success" : "button is-warning";
     },
     updateTask(task){
       this.$emit("updateTask", task);
