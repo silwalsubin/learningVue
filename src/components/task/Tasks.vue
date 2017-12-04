@@ -4,7 +4,8 @@
     <tasks-list :tasks="tasks"
                @addTask="addTask"
                @deleteTask="deleteTask"
-               @taskCompletionStatus="taskCompletionStatus"/>
+               @taskCompletionStatus="taskCompletionStatus"
+               @updateTask="updateTask"/>
   </div>
 </template>
 
@@ -25,6 +26,9 @@ export default {
     },
     taskCompletionStatus(id){
       this.$store.dispatch('changeTaskStatus', id);
+    },
+    updateTask(task){
+      this.$store.dispatch('updateTask', task);
     }
   },
   computed: {

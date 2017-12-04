@@ -18,7 +18,7 @@ export default {
     db.delete(`/tasks[${tasks.findIndex(x => x.id === id)}]`);
   },
   set: (task) => {
-    let index = tasks.findIndex(x => x.id === task.id);
+    let index = db.getData('/').tasks.findIndex(x => x.id === task.id);
     db.push(`/tasks[${index}]`, task);
   }
 }

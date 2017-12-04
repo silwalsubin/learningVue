@@ -7,7 +7,7 @@
     <div class="taskList">
       <article class="message is-small" v-for="task in tasks">
         <div class="message-header">
-          <input :id="task.id" class="input message-header taskNameInput" type="text" v-model="task.name"/>
+          <input :id="task.id" class="input message-header taskNameInput" @blur="updateTask(task)" type="text" v-model="task.name"/>
           <div class="buttons has-addons">
             <span class="changeStatus button" @click="changeStatus(task)">
               {{task.isComplete ? "Rework" : "Completed"}}
@@ -53,6 +53,9 @@ export default {
     },
     changeTextBoxCss(){
       this.inputBoxCssValue = 'input message-header';
+    },
+    updateTask(task){
+      this.$emit("updateTask", task);
     }
   }
 }
