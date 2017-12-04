@@ -64,8 +64,3 @@ export default {
 }
 store.dispatch('getTasksData');
 </script>
-
-<style scoped>
-@import "../../../node_modules/bulma/css/bulma.css";
-
-</style>

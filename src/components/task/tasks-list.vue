@@ -4,10 +4,10 @@
       <input class="input" type="text" v-model="enteredTask" placeholder="Enter a task"/>
       <button class = "button is-success" @click="addTask">Add</button>
     </span>
-    <div class="taskList">
+    <div class="task-list">
       <article class="message is-small" v-for="task in tasks">
         <div class="message-header">
-          <input class="input message-header taskNameInput" @input="updateTask(task)"
+          <input class="input message-header task-name-input" @input="updateTask(task)"
                  type="text" v-model="task.name"/>
           <div class="buttons has-addons">
             <span :class="getDoneTodoCss(task)" @click="changeStatus(task)">
@@ -35,9 +35,7 @@ export default {
   },
   data () {
     return {
-      enteredTask: '',
-      inputBoxCssValue: '',
-      textBoxReadOnly: true
+      enteredTask: ''
     }
   },
   methods: {
@@ -53,9 +51,6 @@ export default {
         this.$emit("taskCompletionStatus", task.id);
         this.enteredTask = '';
     },
-    changeTextBoxCss(){
-      this.inputBoxCssValue = 'input message-header';
-    },
     getDoneTodoCss(task){
       return task.isComplete === false ?
       "button is-success" : "button is-warning";
@@ -67,28 +62,26 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../../../node_modules/bulma/css/bulma.css";
 .input {
   max-width: 300px;
 }
 
-.taskNameInput {
+.task-name-input {
   border: none;
 }
 
-.taskNameInput:hover {
+.task-name-input:hover {
   background-color: white;
   color: black;
   border: 1px solid black;
 }
 
-.taskNameInput:focus {
+.task-name-input:focus {
   border: none;
 }
 
-.taskList{
+.task-list{
   margin-top: 20px;
 }
 

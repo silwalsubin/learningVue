@@ -9,7 +9,7 @@
   <div class="level-item has-text-centered" >
     <div class="completion">
       <p class="heading">Done</p>
-      <p class="title complete completion">{{status.complete}}</p>
+      <p class="title complete done-column">{{status.complete}}</p>
     </div>
   </div>
 </nav>
@@ -33,11 +33,11 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-@import "../../node_modules/bulma/css/bulma.css";
 
-.completion {
+<style scoped>
+
+.done-column {
   color: green;
+
 }
 </style>
