@@ -3,7 +3,7 @@
   <div class="level-item has-text-centered">
     <div>
       <p class="heading">To Do</p>
-      <p class="title toDo">{{status.toDo}}</p>
+      <p class="title toDo todo-column">{{status.toDo}}</p>
     </div>
   </div>
   <div class="level-item has-text-centered" >
@@ -35,9 +35,20 @@ export default {
 
 
 <style scoped>
+.heading {
+  font-size: 20px;
+}
 
 .done-column {
   color: green;
-
+  font-size: 60px;
+  text-shadow: 2px 2px #a39c9c;
 }
+
+.todo-column {
+  color: #e5bd44;
+  font-size: 60px;
+  text-shadow: 2px 2px #a39c9c;
+}
+
 </style>
