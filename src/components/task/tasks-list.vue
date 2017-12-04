@@ -12,7 +12,7 @@
             <span class="changeStatus button" @click="changeStatus(task)">
               {{task.isComplete ? "ToDo" : "Done"}}
             </span>
-            <span class="deleteButton button" @click="deleteTask(task)">
+            <span class="deleteButton button is-danger" @click="deleteTask(task)">
               Delete
             </span>
           </div>
@@ -88,7 +88,7 @@ export default {
 }
 
 article {
-  max-width: 500px;
+  max-width: 460px;
   margin: auto;
 }
 </style>
