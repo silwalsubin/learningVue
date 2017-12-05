@@ -26,20 +26,4 @@ export default {
   text-align: center;
   margin-top: 60px;
 }
-
-/*
-#app {
-  font-family: "Times New Roman", Times, serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h3 {
-  font-weight: normal;
-  font-family: "Times New Roman", Times, serif;
-}
-*/
 </style>

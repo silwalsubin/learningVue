@@ -11,10 +11,11 @@
 <script>
 import statusReporter from '../status-reporter'
 import tasksList from './tasks-list'
-import store from '../../store'
 import notify from '../../notification'
+
 export default {
   name: 'tasks',
+
   methods: {
     addTask(name){
       this.$store.dispatch('addTask', name).then(() => {
@@ -46,6 +47,7 @@ export default {
       });
     }
   },
+
   computed: {
     tasks() {
       return this.$store.getters.getTasks;
@@ -54,13 +56,16 @@ export default {
       return this.$store.getters.getTasksStatusReport;
     }
   },
-  store,
+
   components: {
     statusReporter,
     tasksList
+  },
+
+  mounted(){
+    this.$store.dispatch('getTasksData');
   }
 }
-store.dispatch('getTasksData');
 </script>
 
 <style scoped>

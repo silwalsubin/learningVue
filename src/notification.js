@@ -1,13 +1,16 @@
-import toasted from 'vue-toasted'
-import Vue from 'vue'
+import noty from 'noty'
+import '../node_modules/noty/lib/noty.css';
 
-Vue.use(toasted);
+
+noty.overrideDefaults({
+    layout   : 'bottomRight',
+    type: 'success',
+    theme: 'metroui',
+    timeout: 1000
+});
 
 export default function notify(message) {
-  Vue.toasted.show(message, {
-    theme: "primary",
-    position: "bottom-right",
-    duration: 4000,
-    type: "success"
-  });
+  new noty({
+    text: message
+  }).show();
 }

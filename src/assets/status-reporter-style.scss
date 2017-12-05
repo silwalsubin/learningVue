@@ -1,0 +1,20 @@
+
+$text-shadow-style : 1px 1px #a39c9c;
+$report-font-size: 490px;
+
+.done-column {
+  color: green;
+  font-size: $report-font-size;
+  text-shadow: $text-shadow-style;
+}
+
+.todo-column {
+  color: #e5bd44;
+  font-size: $report-font-size;
+  text-shadow: $text-shadow-style;
+}
+
+
+.heading {
+  font-size: 20px;
+}

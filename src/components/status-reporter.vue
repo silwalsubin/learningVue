@@ -35,20 +35,5 @@ export default {
 
 
 <style scoped>
-.heading {
-  font-size: 20px;
-}
-
-.done-column {
-  color: green;
-  font-size: 40px;
-  text-shadow: 1px 1px #a39c9c;
-}
-
-.todo-column {
-  color: #e5bd44;
-  font-size: 40px;
-  text-shadow: 1px 1px #a39c9c;
-}
-
+@import '../assets/status-reporter-style.scss';
 </style>
