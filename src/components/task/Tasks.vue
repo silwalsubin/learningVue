@@ -8,9 +8,7 @@
                @updateTask="updateTask"/>
   </div>
 </template>
-
 <script>
-
 import statusReporter from '../status-reporter'
 import tasksList from './tasks-list'
 import store from '../../store'
@@ -21,14 +19,14 @@ export default {
     addTask(name){
       this.$store.dispatch('addTask', name).then(() => {
         let message = `Task ${name} added successfully.`
-        notify(message, this.$toasted);
+        notify(message);
       });
     },
     deleteTask(id){
       this.$store.dispatch('deleteTask', id).then(() => {
         let message = `Task ${this.tasks.find(x => x.id === id).name}
                        deleted successfully.`
-        notify(message, this.$toasted);
+        notify(message);
       });
     },
     taskCompletionStatus(id){
@@ -37,14 +35,14 @@ export default {
         let completionStatus = !task.isComplete? "done": "toDo";
         let message = `Task ${task.name} successfully
                        set to "${completionStatus}."`;
-        notify(message, this.$toasted);
+        notify(message);
       });
     },
     updateTask(task){
       var originalName = `${this.tasks.find(x => x.id === task.id).name}`;
       this.$store.dispatch('updateTask', task).then(() => {
         let message = `Task name successfully updated to ${task.name}.`;
-        notify(message, this.$toasted);
+        notify(message);
       });
     }
   },
@@ -64,3 +62,7 @@ export default {
 }
 store.dispatch('getTasksData');
 </script>
+
+<style scoped>
+@import './assets/task-style.scss';
+</style>

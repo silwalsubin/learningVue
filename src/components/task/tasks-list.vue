@@ -62,31 +62,6 @@ export default {
 }
 </script>
 
-<style scoped>
-.input {
-  max-width: 300px;
-}
-
-.task-name-input {
-  border: none;
-}
-
-.task-name-input:hover {
-  background-color: white;
-  color: black;
-  border: 1px solid black;
-}
-
-.task-name-input:focus {
-  border: none;
-}
-
-.task-list{
-  margin-top: 20px;
-}
-
-article {
-  max-width: 460px;
-  margin: auto;
-}
+<style lang="scss" scoped>
+@import './assets/task-style.scss';
 </style>

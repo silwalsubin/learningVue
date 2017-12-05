@@ -3,9 +3,6 @@
 import Vue from 'vue'
 import app from './app'
 import router from './router'
-import toasted from 'vue-toasted'
-Vue.use(toasted);
-
 
 Vue.config.productionTip = false
 
