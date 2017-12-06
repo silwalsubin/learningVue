@@ -51,6 +51,9 @@ export default {
       this.$emit("deleteTask", task.id);
       this.enteredTask = '';
     },
+    changeOrder(fromIndex, toIndex){
+      this.$emit("changeOrder", fromIndex, toIndex);
+    },
     changeStatus(task){
       this.$emit("taskCompletionStatus", task.id);
       this.enteredTask = '';
@@ -65,7 +68,10 @@ export default {
   },
   mounted(){
     var el = document.getElementById('listOfTasks');
-    sortable.create(el, {
+    var dragDrop = new sortable(el, {
+      onEnd: (evt) => {
+        this.changeOrder(evt.oldIndex, evt.newIndex);
+      },
       handle: ".dragHandle",
       animation: 150
     });
