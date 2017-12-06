@@ -2,7 +2,7 @@
   <div class = "tasks-list">
     <span class="inputTask">
       <input class="input" type="text" v-model="enteredTask"
-              placeholder="Enter a task"/>
+              @keyup.enter="addTask" placeholder="Enter a task"/>
       <button class = "button is-success" @click="addTask">Add</button>
     </span>
     <div class="task-list">
@@ -38,16 +38,18 @@ export default {
   },
   methods: {
     addTask(){
+      if (this.enteredTask !== ''){
         this.$emit("addTask", this.enteredTask);
         this.enteredTask = '';
+      }
     },
     deleteTask(task){
-        this.$emit("deleteTask", task.id);
-        this.enteredTask = '';
+      this.$emit("deleteTask", task.id);
+      this.enteredTask = '';
     },
     changeStatus(task){
-        this.$emit("taskCompletionStatus", task.id);
-        this.enteredTask = '';
+      this.$emit("taskCompletionStatus", task.id);
+      this.enteredTask = '';
     },
     getDoneTodoCss(task){
       return task.isComplete === false ?
