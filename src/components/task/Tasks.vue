@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import statusReporter from '../status-reporter'
+import statusReporter from '../status-report/status-reporter'
 import tasksList from './tasks-list'
 import notify from '../../notification'
 

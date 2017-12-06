@@ -33,7 +33,6 @@ export default {
 }
 </script>
 
-
 <style lang="scss" scoped>
-@import '../assets/status-reporter.scss';
+@import './assets/status-reporter.scss';
 </style>

@@ -1,6 +1,11 @@
-@import "../node_modules/bulma/css/bulma.css";
+@import "./vendor.scss";
 
 $standard-input-width : 300px;
+
+#app {
+  text-align: center;
+  margin-top: 60px;
+}
 
 article {
   max-width: 460px;

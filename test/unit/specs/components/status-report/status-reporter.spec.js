@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import statusReporter from '@/components/status-reporter'
+import statusReporter from '@/components/status-report/status-reporter'
 
 
 

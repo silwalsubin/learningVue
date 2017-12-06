@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/myApp.png">
+    <img src="./assets/img/myApp.png">
     <welcome/>
     <tasks/>
   </div>
@@ -21,9 +21,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/app.scss';
-#app {
-  text-align: center;
-  margin-top: 60px;
-}
+@import './assets/style/app.scss';
 </style>
