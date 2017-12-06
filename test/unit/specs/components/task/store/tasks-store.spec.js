@@ -2,7 +2,6 @@ import Vue from 'vue'
 import store from "@/store";
 import uuid from 'uuid';
 
-
 describe ('task-store', () => {
 
   let task1 = {name: "task 1", id: 1234, isComplete: false};

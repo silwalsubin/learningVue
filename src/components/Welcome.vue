@@ -18,11 +18,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-.heading {
-  font-size: 20px;
-}
-
-</style>

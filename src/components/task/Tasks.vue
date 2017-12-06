@@ -2,12 +2,13 @@
   <div id="tasks">
     <statusReporter :status="tasksStatus"/>
     <tasks-list :tasks="tasks"
-               @addTask="addTask"
-               @deleteTask="deleteTask"
-               @taskCompletionStatus="taskCompletionStatus"
-               @updateTask="updateTask"/>
+            @addTask="addTask"
+            @deleteTask="deleteTask"
+            @taskCompletionStatus="taskCompletionStatus"
+            @updateTask="updateTask"/>
   </div>
 </template>
+
 <script>
 import statusReporter from '../status-report/status-reporter'
 import tasksList from './tasks-list'
@@ -15,7 +16,6 @@ import notify from '../../notification'
 
 export default {
   name: 'tasks',
-
   methods: {
     addTask(name){
       this.$store.dispatch('addTask', name).then(() => {
@@ -47,7 +47,6 @@ export default {
       });
     }
   },
-
   computed: {
     tasks() {
       return this.$store.getters.getTasks;
@@ -56,12 +55,10 @@ export default {
       return this.$store.getters.getTasksStatusReport;
     }
   },
-
   components: {
     statusReporter,
     tasksList
   },
-
   mounted(){
     this.$store.dispatch('getTasksData');
   }
