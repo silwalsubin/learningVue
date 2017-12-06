@@ -35,5 +35,5 @@ export default {
 
 
 <style lang="scss" scoped>
-@import '../assets/status-reporter-style.scss';
+@import '../assets/status-reporter.scss';
 </style>

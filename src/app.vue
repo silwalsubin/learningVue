@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/app-style.scss';
+@import './assets/app.scss';
 #app {
   text-align: center;
   margin-top: 60px;

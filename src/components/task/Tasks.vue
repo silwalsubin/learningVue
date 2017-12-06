@@ -68,6 +68,6 @@ export default {
 }
 </script>
 
-<style scoped>
-@import './assets/task-style.scss';
+<style lang="scss">
+@import './assets/tasks.scss';
 </style>
