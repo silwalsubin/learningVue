@@ -5,7 +5,7 @@
               @keyup.enter="addTask" placeholder="Enter a task"/>
       <button class = "button is-success" @click="addTask">Add</button>
     </span>
-    <div class="task-list">
+    <div id="listOfTasks" class="task-list">
       <article class="message is-small" v-for="task in tasks">
         <div class="message-header">
           <input class="input message-header task-name-input"
@@ -15,6 +15,7 @@
                     {{task.isComplete ? "ToDo" : "Done"}}</span>
             <span class="deleteButton button is-danger is-inverted"
                     @click="deleteTask(task)">Delete</span>
+            <span class="button dragHandle">Move</span>
           </div>
         </div>
       </article>
@@ -22,7 +23,10 @@
   </div>
 </template>
 
+
 <script>
+import sortable from 'sortablejs'
+
 export default {
   name: "tasks-list",
   props: {
@@ -58,6 +62,13 @@ export default {
     updateTask(task){
       this.$emit("updateTask", task);
     }
+  },
+  mounted(){
+    var el = document.getElementById('listOfTasks');
+    sortable.create(el, {
+      handle: ".dragHandle",
+      animation: 150
+    });
   }
 }
 </script>

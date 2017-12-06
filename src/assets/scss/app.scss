@@ -8,7 +8,7 @@ $standard-input-width : 300px;
 }
 
 article {
-  max-width: 460px;
+  max-width: 525px;
   margin: auto;
 }
 
@@ -37,4 +37,10 @@ article {
 
 .is-selected {
   background-color: green;
+  color: black;
+}
+
+
+.message-header {
+  margin: 0 0 0 0
 }
