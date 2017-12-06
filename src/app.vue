@@ -20,8 +20,8 @@ export default {
 }
 </script>
 
-<style>
-@import "../node_modules/bulma/css/bulma.css";
+<style lang="scss">
+@import './assets/app-style.scss';
 #app {
   text-align: center;
   margin-top: 60px;
