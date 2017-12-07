@@ -34,7 +34,9 @@ export default {
     .catch((error) => { console.log(error); });
   },
   setTasks: (context, payload) => {
-    context.commit("setTasks", payload);
+    axios.post(getUrl("/setAll"), {data: payload})
+    .then(() => { context.commit('setTasks', payload); })
+    .catch((error) => { console.log(error); });
   },
   updateTask: (context, payload) => {
     axios.post(getUrl("/update"), { data: payload })

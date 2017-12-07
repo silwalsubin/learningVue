@@ -21,10 +21,8 @@ export default {
     let index = db.getData('/').tasks.findIndex(x => x.id === task.id);
     db.push(`/tasks[${index}]`, task);
   },
-  swap: (fromIndex, toIndex) => {
-    let fromTask = db.getData(`/tasks[${fromIndex}]`);
-    let toTask = db.getData(`/tasks[${toIndex}]`);
-    db.push(`/tasks[${fromIndex}]`, toTask);
-    db.push(`/tasks[${toIndex}]`, fromTask);
+  setTasks: (tasks) => {
+    db.delete('/tasks');
+    db.push('/tasks', tasks, true);
   }
 }

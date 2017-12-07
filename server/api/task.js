@@ -25,8 +25,8 @@ tasks.get('/getAll', (req, res) => {
   res.send(taskRepo.getAll());
 });
 
-tasks.post('/swap', (req, res) => {
+tasks.post('/setAll', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.send(taskRepo.swap(req.body.data));
+  res.send(taskRepo.setTasks(req.body.data));
 })
 export default tasks;
