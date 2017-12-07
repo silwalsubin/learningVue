@@ -6,26 +6,26 @@
       <button class = "button is-success" @click="addTask">Add</button>
     </span>
     <div id="listOfTasks" class="task-list">
-      <article class="message is-small" v-for="task in tasks">
-        <div class="message-header">
-          <input class="input message-header task-name-input"
-                  @input="updateTask(task)" type="text" v-model="task.name"/>
-          <div class="buttons has-addons">
-            <span :class="getDoneTodoCss(task)" @click="changeStatus(task)">
-                    {{task.isComplete ? "ToDo" : "Done"}}</span>
-            <span class="deleteButton button is-danger is-inverted"
-                    @click="deleteTask(task)">Delete</span>
-            <span class="button dragHandle">Move</span>
+      <draggable v-model="tasksList">
+        <article class="message is-small" v-for="task in tasks">
+          <div class="message-header">
+            <input class="input message-header task-name-input"
+                    @input="updateTask(task)" type="text" v-model="task.name"/>
+            <div class="buttons has-addons">
+              <span :class="getDoneTodoCss(task)" @click="changeStatus(task)">
+                      {{task.isComplete ? "ToDo" : "Done"}}</span>
+              <span class="deleteButton button is-danger is-inverted"
+                      @click="deleteTask(task)">Delete</span>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </draggable>
     </div>
   </div>
 </template>
 
-
 <script>
-import sortable from 'sortablejs'
+import draggable from 'vuedraggable'
 
 export default {
   name: "tasks-list",
@@ -51,9 +51,6 @@ export default {
       this.$emit("deleteTask", task.id);
       this.enteredTask = '';
     },
-    changeOrder(fromIndex, toIndex){
-      this.$emit("changeOrder", fromIndex, toIndex);
-    },
     changeStatus(task){
       this.$emit("taskCompletionStatus", task.id);
       this.enteredTask = '';
@@ -66,15 +63,18 @@ export default {
       this.$emit("updateTask", task);
     }
   },
-  mounted(){
-    var el = document.getElementById('listOfTasks');
-    var dragDrop = new sortable(el, {
-      onEnd: (evt) => {
-        this.changeOrder(evt.oldIndex, evt.newIndex);
+  components: {
+    draggable
+  },
+  computed: {
+    tasksList: {
+      get() {
+        return this.tasks
       },
-      handle: ".dragHandle",
-      animation: 150
-    });
+      set(value) {
+        this.$emit("changeOrder", value);
+      }
+    }
   }
 }
 </script>

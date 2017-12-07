@@ -5,7 +5,8 @@
             @addTask="addTask"
             @deleteTask="deleteTask"
             @taskCompletionStatus="taskCompletionStatus"
-            @updateTask="updateTask"/>
+            @updateTask="updateTask"
+            @changeOrder="setTasks"/>
     <tasksFooter :isShowCompleteChecked = "isShowCompleteChecked"
                  :isToDoChecked = "isToDoChecked"
                  @showCompleted="showCompletedToggle"
@@ -34,6 +35,9 @@ export default {
                        deleted successfully.`
         notify(message);
       });
+    },
+    setTasks(updatedList){
+      this.$store.dispatch('setTasks', updatedList);
     },
     showCompletedToggle(){
       this.isToDoChecked = false;
