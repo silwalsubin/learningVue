@@ -2,20 +2,20 @@
   <div id="app">
     <img src="./assets/img/myApp.png">
     <welcome/>
-    <layout/>
+    <tasks/>
   </div>
 </template>
 
 <script>
 import welcome from './components/welcome'
-import layout from './components/task/layout'
+import tasks from './components/task/tasks'
 
 
 export default {
   name: 'app',
   components: {
     welcome,
-    layout
+    tasks
   }
 }
 </script>
