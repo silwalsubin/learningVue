@@ -33,7 +33,7 @@ export default {
     .then(response => { context.commit('setTasks', response.data); })
     .catch((error) => { console.log(error); });
   },
-  setTasks: (context, payload) => {
+  changeOrder: (context, payload) => {
     axios.post(getUrl("/setAll"), {data: payload})
     .then(() => { context.commit('setTasks', payload); })
     .catch((error) => { console.log(error); });

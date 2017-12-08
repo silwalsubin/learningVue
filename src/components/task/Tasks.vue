@@ -6,18 +6,13 @@
             @deleteTask="deleteTask"
             @taskCompletionStatus="taskCompletionStatus"
             @updateTask="updateTask"
-            @changeOrder="setTasks"/>
-    <tasksFooter :isShowCompleteChecked = "isShowCompleteChecked"
-                 :isToDoChecked = "isToDoChecked"
-                 @showCompleted="showCompletedToggle"
-                 @showToDo="showToDoToggle"/>
+            @changeOrder="changeOrder"/>
   </div>
 </template>
 
 <script>
 import statusReporter from '../status-report/status-reporter'
 import tasksList from './tasks-list'
-import tasksFooter from './tasks-footer'
 import notify from '../../notification'
 
 export default {
@@ -29,23 +24,15 @@ export default {
         notify(message);
       });
     },
+    changeOrder(updatedList){
+      this.$store.dispatch('changeOrder', updatedList);
+    },
     deleteTask(id){
       this.$store.dispatch('deleteTask', id).then(() => {
         let message = `Task ${this.tasks.find(x => x.id === id).name}
                        deleted successfully.`
         notify(message);
       });
-    },
-    setTasks(updatedList){
-      this.$store.dispatch('setTasks', updatedList);
-    },
-    showCompletedToggle(){
-      this.isToDoChecked = false;
-      this.isShowCompleteChecked = !this.isShowCompleteChecked;
-    },
-    showToDoToggle(){
-      this.isShowCompleteChecked = false;
-      this.isToDoChecked = !this.isToDoChecked;
     },
     taskCompletionStatus(id){
       this.$store.dispatch('changeTaskStatus', id).then(() => {
@@ -65,17 +52,8 @@ export default {
     }
   },
   computed: {
-    getTasks() {
-      if (this.isShowCompleteChecked === true){
-        return this.$store.getters.getTasks.filter(x => x.isComplete === true);
-      }
-      if (this.isToDoChecked === true){
-        return this.$store.getters.getTasks.filter(x => x.isComplete === false);
-      }
-      return this.$store.getters.getTasks;
-    },
     tasks() {
-      return this.getTasks;
+      return this.$store.getters.getTasks;
     },
     tasksStatus(){
       return this.$store.getters.getTasksStatusReport;
@@ -83,14 +61,7 @@ export default {
   },
   components: {
     statusReporter,
-    tasksList,
-    tasksFooter
-  },
-  data() {
-    return {
-      isShowCompleteChecked: false,
-      isToDoChecked: false
-    }
+    tasksList
   },
   mounted(){
     this.$store.dispatch('getTasksData');

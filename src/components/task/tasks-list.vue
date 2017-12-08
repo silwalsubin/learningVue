@@ -7,8 +7,8 @@
     </span>
     <div id="listOfTasks" class="task-list">
       <draggable v-model="tasksList">
-        <article class="message is-small" v-for="task in tasks">
-          <div class="message-header">
+        <article class="message is-small" v-for="task in tasksList">
+          <div class="message-header" v-show="filteredTask.includes(task)">
             <input class="input message-header task-name-input"
                     @input="updateTask(task)" type="text" v-model="task.name"/>
             <div class="buttons has-addons">
@@ -21,11 +21,16 @@
         </article>
       </draggable>
     </div>
+    <tasksFooter :isShowCompleteChecked = "isShowCompleteChecked"
+                 :isToDoChecked = "isToDoChecked"
+                 @showCompleted="showCompletedToggle"
+                 @showToDo="showToDoToggle"/>
   </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable'
+import tasksFooter from './tasks-footer'
 
 export default {
   name: "tasks-list",
@@ -37,7 +42,9 @@ export default {
   },
   data () {
     return {
-      enteredTask: ''
+      enteredTask: '',
+      isShowCompleteChecked: false,
+      isToDoChecked: false
     }
   },
   methods: {
@@ -61,10 +68,19 @@ export default {
     },
     updateTask(task){
       this.$emit("updateTask", task);
-    }
+    },
+    showCompletedToggle(){
+      this.isToDoChecked = false;
+      this.isShowCompleteChecked = !this.isShowCompleteChecked;
+    },
+    showToDoToggle(){
+      this.isShowCompleteChecked = false;
+      this.isToDoChecked = !this.isToDoChecked;
+    },
   },
   components: {
-    draggable
+    draggable,
+    tasksFooter
   },
   computed: {
     tasksList: {
@@ -74,6 +90,14 @@ export default {
       set(value) {
         this.$emit("changeOrder", value);
       }
+    },
+    filteredTask() {
+      let result = this.tasks;
+      result = this.isShowCompleteChecked === true ?
+               result.filter(x => x.isComplete === true) : result;
+      result = this.isToDoChecked === true ?
+               result.filter(x => x.isComplete === false) : result;
+      return result;
     }
   }
 }
