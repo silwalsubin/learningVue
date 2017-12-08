@@ -21,7 +21,7 @@
         </article>
       </draggable>
     </div>
-    <tasksFooter :isShowCompleteChecked = "isShowCompleteChecked"
+    <tasksFooter :isCompletedChecked = "isCompletedChecked"
                  :isToDoChecked = "isToDoChecked"
                  @showCompleted="showCompletedToggle"
                  @showToDo="showToDoToggle"/>
@@ -43,7 +43,7 @@ export default {
   data () {
     return {
       enteredTask: '',
-      isShowCompleteChecked: false,
+      isCompletedChecked: false,
       isToDoChecked: false
     }
   },
@@ -59,7 +59,7 @@ export default {
       this.enteredTask = '';
     },
     changeStatus(task){
-      this.$emit("taskCompletionStatus", task.id);
+      this.$emit("changeStatus", task.id);
       this.enteredTask = '';
     },
     getDoneTodoCss(task){
@@ -71,10 +71,10 @@ export default {
     },
     showCompletedToggle(){
       this.isToDoChecked = false;
-      this.isShowCompleteChecked = !this.isShowCompleteChecked;
+      this.isCompletedChecked = !this.isCompletedChecked;
     },
     showToDoToggle(){
-      this.isShowCompleteChecked = false;
+      this.isCompletedChecked = false;
       this.isToDoChecked = !this.isToDoChecked;
     },
   },
@@ -93,7 +93,7 @@ export default {
     },
     filteredTask() {
       let result = this.tasks;
-      result = this.isShowCompleteChecked === true ?
+      result = this.isCompletedChecked === true ?
                result.filter(x => x.isComplete === true) : result;
       result = this.isToDoChecked === true ?
                result.filter(x => x.isComplete === false) : result;
