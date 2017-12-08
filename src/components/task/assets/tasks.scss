@@ -1,10 +1,9 @@
 .task-name-input {
   border: none;
-  box-shadow: none;
-  background-color: inherit;
   &:hover {
     background-color: white;
     color: black;
+    border: 1px solid black;
   }
   &:focus {
     border: none;
@@ -13,25 +12,4 @@
 
 .task-list{
   margin-top: 20px;
-}
-
-.task-tr{
-  background-color: black;
-}
-
-.table th {
-    text-align: center;
-}
-
-.task-list-table {
-  width: 500px;
-  text-align: center;
-  &:hover{
-      background-color: #d8d8d8;
-      cursor: move;
-  }
-}
-
-tr {
-
 }

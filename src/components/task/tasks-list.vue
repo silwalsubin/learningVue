@@ -5,28 +5,7 @@
               @keyup.enter="addTask" placeholder="Enter a task"/>
       <button class = "button is-success" @click="addTask">Add</button>
     </span>
-    <table class="table is-hoverable ">
-      <thead>
-        <th class="subtitle">Tasks</th>
-      </thead>
-      <tbody>
-        <draggable v-model="tasksList">
-          <tr v-for="task in tasks">
-            <td class = "task-list-table">
-              <span>
-                <input class="input task-name-input" @blur="updateTask(task)" type="text"
-                            v-model="task.name"/>
-              <label class="checkbox">
-                <input type="checkbox">
-              </label>
-              <button class="delete" @click="deleteTask(task)"></button>
-              </span>
-            </td>
-          </tr>
-        </draggable>
-      </tbody>
-    </table>
-    <!-- <div id="listOfTasks" class="task-list">
+    <div id="listOfTasks" class="task-list">
       <draggable v-model="tasksList">
         <article class="message is-small" v-for="task in tasks">
           <div class="message-header">
@@ -41,12 +20,11 @@
           </div>
         </article>
       </draggable>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
-
 import draggable from 'vuedraggable'
 
 export default {
