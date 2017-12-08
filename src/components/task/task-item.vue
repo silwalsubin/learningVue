@@ -2,12 +2,10 @@
   <div class="message-header" >
     <input class="input message-header task-name-input"
            @blur="updateTask(task)" type="text" v-model="task.name"/>
-    <div class="buttons has-addons">
-      <span :class="getDoneTodoCss(task)" @click="changeStatus(task)">
-              {{task.isComplete ? "ToDo" : "Done"}}</span>
-      <span class="deleteButton button is-danger is-inverted"
-              @click="deleteTask(task)">Delete</span>
-    </div>
+    <span>
+        <i :class="getDoneTodoCss(task)" @click="changeStatus(task)"></i>
+        <i class="fa fa-remove" @click="deleteTask(task)"></i>
+    </span>
   </div>
 </template>
 
@@ -29,7 +27,7 @@ export default {
     },
     getDoneTodoCss(task){
       return task.isComplete === false ?
-      "button is-success" : "button is-warning";
+      "fa fa-check" : "fa fa-undo";
     },
     updateTask(task){
         this.$emit("update", task);
