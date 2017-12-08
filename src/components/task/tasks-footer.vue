@@ -3,8 +3,6 @@
       <div class="buttons has-addons">
         <span :class="getCompletedButtonCss()" @click="showCompleted">Completed</span>
         <span :class="getToDoButtonCss()" @click="showToDo">ToDo</span>
-        <!-- <span :class="getButtonCss()">Sort</span>
-        <span :class="getButtonCss()">Sort Descending</span> -->
       </div>
     </footer>
 </template>
