@@ -28,13 +28,7 @@ export default {
       this.$store.dispatch('changeOrder', updatedList);
     },
     changeStatus(id){
-      this.$store.dispatch('changeStatus', id).then(() => {
-        let task = this.tasks.find(x => x.id === id)
-        let completionStatus = !task.isComplete? "done": "toDo";
-        let message = `Task ${task.name} successfully
-                       set to "${completionStatus}."`;
-        notify(message);
-      });
+      this.$store.dispatch('changeStatus', id);
     },
     deleteTask(id){
       this.$store.dispatch('deleteTask', id).then(() => {
@@ -45,10 +39,7 @@ export default {
     },
     updateTask(task){
       var originalName = `${this.tasks.find(x => x.id === task.id).name}`;
-      this.$store.dispatch('updateTask', task).then(() => {
-        let message = `Task name successfully updated to ${task.name}.`;
-        notify(message);
-      });
+      this.$store.dispatch('updateTask', task);
     }
   },
   computed: {
