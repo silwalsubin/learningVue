@@ -24,7 +24,6 @@ import draggable from 'vuedraggable'
 import taskFooter from './tasks-footer'
 import taskItem from './task-item'
 import entry from './entry'
-import datePicker from '../date-picker'
 
 
 export default {
@@ -68,7 +67,6 @@ export default {
     draggable,
     taskItem,
     taskFooter,
-    datePicker,
     entry
   },
   computed: {

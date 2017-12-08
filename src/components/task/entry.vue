@@ -27,19 +27,23 @@
 
 <script>
 
+import swal from 'sweetalert'
 import flatPickr from 'vue-flatpickr-component';
 
 export default {
   name: "entry",
   methods: {
     addTask(name, dueDate){
-      if (name !== "" && dueDate !== ""){
+      if (name === ""){
+        swal("Error", "Name field cannot be empty", "error");
+      }
+      else if (dueDate === ""){
+        swal("Error", "Due date field cannot be empty", "error");
+      }
+      else {
         this.$emit("addTask", {name, dueDate});
         this.enteredTask = "";
         this.dueDate = "";
-      }
-      else {
-        console.log("implement validation later :)")
       }
     }
   },
