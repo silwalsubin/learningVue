@@ -4,7 +4,7 @@
     <tasks-list :tasks="tasks"
             @addTask="addTask"
             @deleteTask="deleteTask"
-            @changeStatus="changeStatus"
+            @taskCompletionStatus="taskCompletionStatus"
             @updateTask="updateTask"
             @changeOrder="changeOrder"/>
   </div>
@@ -27,19 +27,19 @@ export default {
     changeOrder(updatedList){
       this.$store.dispatch('changeOrder', updatedList);
     },
-    changeStatus(id){
-      this.$store.dispatch('changeStatus', id).then(() => {
-        let task = this.tasks.find(x => x.id === id)
-        let completionStatus = !task.isComplete? "done": "toDo";
-        let message = `Task ${task.name} successfully
-                       set to "${completionStatus}."`;
-        notify(message);
-      });
-    },
     deleteTask(id){
       this.$store.dispatch('deleteTask', id).then(() => {
         let message = `Task ${this.tasks.find(x => x.id === id).name}
                        deleted successfully.`
+        notify(message);
+      });
+    },
+    taskCompletionStatus(id){
+      this.$store.dispatch('changeTaskStatus', id).then(() => {
+        let task = this.tasks.find(x => x.id === id)
+        let completionStatus = !task.isComplete? "done": "toDo";
+        let message = `Task ${task.name} successfully
+                       set to "${completionStatus}."`;
         notify(message);
       });
     },

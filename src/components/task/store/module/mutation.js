@@ -2,7 +2,7 @@ export default{
   addTask: (state, task) => {
     state.tasks.push(task);
   },
-  changeStatus: (state, id) => {
+  changeTaskStatus: (state, id) => {
     let task = state.tasks.find(x => x.id === id);
     task.isComplete = !task.isComplete;
   },

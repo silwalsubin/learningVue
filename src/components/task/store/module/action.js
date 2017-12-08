@@ -23,9 +23,9 @@ export default {
     .then(() => { context.commit('deleteTask', payload); })
     .catch((error) => { console.log(error); });
   },
-  changeStatus: (context, payload) => {
+  changeTaskStatus: (context, payload) => {
     axios.post(getUrl("/changeStatus"), { data: payload })
-    .then(() => { context.commit('changeStatus', payload); })
+    .then(() => { context.commit('changeTaskStatus', payload); })
     .catch((error) => { console.log(error); });
   },
   getTasksData: (context) => {
