@@ -14,7 +14,7 @@ let buttonSelectedCss = "button is-light footer-button is-success";
 export default {
   name: "tasks-footer",
   props: {
-    isCompletedChecked : {
+    isShowCompleteChecked : {
       type: Boolean,
       default: false
     },
@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     getCompletedButtonCss(){
-      return this.isCompletedChecked === true ?
+      return this.isShowCompleteChecked === true ?
         buttonSelectedCss : buttonCss;
     },
     getToDoButtonCss(){

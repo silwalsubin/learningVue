@@ -9,9 +9,11 @@ function getUrl(methodName) {
 
 export default {
   addTask: (context, payload) => {
+    console.log("name: " + payload.name + " " + payload.dueDate);
     let task = {
+      dueDate: payload.dueDate,
       id : uuid(),
-      name : payload,
+      name : payload.name,
       isComplete : false
     }
     axios.post(getUrl("/add"), { data: task })

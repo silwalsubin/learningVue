@@ -26,7 +26,8 @@ article {
 }
 
 .input {
-  max-width: $standard-input-width;
+  max-width: 90%;
+  display: inline;
 }
 
 .footer-button {
@@ -42,4 +43,16 @@ article {
 
 .message-header {
   margin: 0 0 0 0
+}
+
+
+
+.vdp-datepicker input {
+  width: 20px;
+  height: inherit;
+}
+
+column .datePicker {
+  width: 200px;
+
 }

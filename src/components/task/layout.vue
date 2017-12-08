@@ -18,8 +18,9 @@ import notify from '../../notification'
 export default {
   name: 'tasks',
   methods: {
-    addTask(name){
-      this.$store.dispatch('addTask', name).then(() => {
+    addTask(task){
+      console.log(task);
+      this.$store.dispatch('addTask', task).then(() => {
         let message = `Task ${name} added successfully.`
         notify(message);
       });

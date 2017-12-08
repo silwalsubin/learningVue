@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import datePicker from 'vue-md-date-picker'
 
 let buttonCss = "button is-light footer-button";
 let buttonSelectedCss = "button is-light footer-button is-success";
@@ -48,6 +49,9 @@ export default {
     showToDo(){
       this.$emit("showToDo");
     }
+  },
+  components : {
+    datePicker
   }
 }
 </script>
