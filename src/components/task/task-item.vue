@@ -1,7 +1,7 @@
 <template>
   <div class="message-header" >
     <input class="input message-header task-name-input"
-           @blur="updateTask(task, taskName)" type="text" v-model="taskName"/>
+            @input="updateTask(task)" type="text" v-model="task.name"/>
     <div class="buttons has-addons">
       <span :class="getDoneTodoCss(task)" @click="changeStatus(task)">
               {{task.isComplete ? "ToDo" : "Done"}}</span>
@@ -31,17 +31,8 @@ export default {
       return task.isComplete === false ?
       "button is-success" : "button is-warning";
     },
-    updateTask(task, taskName){
-      if (taskName !== task.name){
-        this.task.name = taskName;
-                      console.log(`${task.name} and var ${taskName}`);
-        this.$emit("update", task);
-      }
-    }
-  },
-  data() {
-    return {
-      taskName : this.task.name
+    updateTask(task){
+      this.$emit("update", task);
     }
   }
 }
