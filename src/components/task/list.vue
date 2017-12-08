@@ -8,21 +8,16 @@
     <div id="listOfTasks" class="task-list">
       <draggable v-model="tasksList">
         <article class="message is-small" v-for="task in tasksList">
-          <div class="message-header" v-show="filteredTask.includes(task)">
-            <input class="input message-header task-name-input"
-                    @input="updateTask(task)" type="text" v-model="task.name"/>
-            <div class="buttons has-addons">
-              <span :class="getDoneTodoCss(task)" @click="changeStatus(task)">
-                      {{task.isComplete ? "ToDo" : "Done"}}</span>
-              <span class="deleteButton button is-danger is-inverted"
-                      @click="deleteTask(task)">Delete</span>
-            </div>
-          </div>
+          <taskItem v-show="filteredTask.includes(task)"
+                    :task="task"
+                    @delete="deleteTask"
+                    @changeStatus="changeStatus"
+                    @update="updateTask"/>
         </article>
       </draggable>
     </div>
-    <tasksFooter :isCompletedChecked = "isCompletedChecked"
-                 :isToDoChecked = "isToDoChecked"
+    <taskFooter :isCompletedChecked="isCompletedChecked"
+                 :isToDoChecked="isToDoChecked"
                  @showCompleted="showCompletedToggle"
                  @showToDo="showToDoToggle"/>
   </div>
@@ -30,7 +25,8 @@
 
 <script>
 import draggable from 'vuedraggable'
-import tasksFooter from './tasks-footer'
+import taskFooter from './tasks-footer'
+import taskItem from './task-item'
 
 export default {
   name: "tasks-list",
@@ -54,17 +50,13 @@ export default {
         this.enteredTask = '';
       }
     },
-    deleteTask(task){
-      this.$emit("deleteTask", task.id);
+    deleteTask(id){
+      this.$emit("deleteTask", id);
       this.enteredTask = '';
     },
-    changeStatus(task){
-      this.$emit("changeStatus", task.id);
+    changeStatus(id){
+      this.$emit("changeStatus", id);
       this.enteredTask = '';
-    },
-    getDoneTodoCss(task){
-      return task.isComplete === false ?
-      "button is-success" : "button is-warning";
     },
     updateTask(task){
       this.$emit("updateTask", task);
@@ -80,7 +72,8 @@ export default {
   },
   components: {
     draggable,
-    tasksFooter
+    taskItem,
+    taskFooter
   },
   computed: {
     tasksList: {
