@@ -9,7 +9,6 @@ function getUrl(methodName) {
 
 export default {
   addTask: (context, payload) => {
-    console.log("name: " + payload.name + " " + payload.dueDate);
     let task = {
       dueDate: payload.dueDate,
       id : uuid(),

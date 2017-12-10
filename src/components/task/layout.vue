@@ -7,6 +7,7 @@
             @changeStatus="changeStatus"
             @updateTask="updateTask"
             @changeOrder="changeOrder"/>
+    <calendar :tasks="tasks"/>
   </div>
 </template>
 
@@ -14,12 +15,12 @@
 import statusReporter from '../status-report/status-reporter'
 import list from './list'
 import notify from '../../notification'
+import calendar from '../calendar'
 
 export default {
   name: 'tasks',
   methods: {
     addTask(task){
-      console.log(task);
       this.$store.dispatch('addTask', task).then(() => {
         let message = `Task ${name} added successfully.`
         notify(message);
@@ -53,6 +54,7 @@ export default {
   },
   components: {
     statusReporter,
+    calendar,
     list
   },
   mounted(){

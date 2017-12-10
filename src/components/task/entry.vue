@@ -7,13 +7,18 @@
                    placeholder="Enter a task"/>
           </div>
           <div class="column is-6">
-            <flat-pickr
-                v-model = "dueDate"
-                :required="true"
-                class="input"
-                placeholder="Due date"
-                name="date">
-              </flat-pickr>
+            <div class="control has-icons-left">
+              <flat-pickr
+                  v-model = "dueDate"
+                  :required="true"
+                  class="input"
+                  placeholder="Due date"
+                  name="date">
+                </flat-pickr>
+                <span class="icon is-small is-left">
+                  <i class="fa fa-calendar"></i>
+                </span>
+            </div>
           </div>
     </div>
     <div class="column is-1">

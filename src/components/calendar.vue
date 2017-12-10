@@ -1,44 +1,35 @@
 <template>
-  <!-- <vue-event-calendar
-        :events="demoEvents"
-        @day-changed="handleDayChanged"
-        @month-changed="handleMonthChanged"
-      ></vue-event-calendar> -->
+  <vueFullcalendar :events="getEvents" locale="en"/>
 </template>
 
 <script>
-  // import Vue from 'vue'
-  // //import 'vue-event-calendar/dist/style.css'
-  // import vueEventCalendar from 'vue-event-calendar'
-  // let today = new Date()
-  // export default {
-  //   name: "calendar",
-  //   data () {
-  //      return {
-  //        demoEvents: [{
-  //          date: `${today.getFullYear()}/${today.getMonth() + 1}/15`,
-  //          title: 'Title-1',
-  //          desc: 'longlonglong description'
-  //        },{
-  //          date: `${today.getFullYear()}/${today.getMonth() + 1}/24`,
-  //          title: 'Title-2'
-  //        },{
-  //          date: `${today.getFullYear()}/${today.getMonth() === 11 ? 1 : today.getMonth() + 2}/06`,
-  //          title: 'Title-3',
-  //          desc: 'description'
-  //        }]
-  //      }
-  //    },
-  //    methods: {
-  //      handleDayChanged (data) {
-  //        console.log('date-changed', data)
-  //      },
-  //      handleMonthChanged (data) {
-  //        console.log('month-changed', data)
-  //      }
-  //    },
-  //    components : {
-  //      vueEventCalendar
-  //    }
-  // }
-</script>
+  //import 'vue-event-calendar/dist/style.css'
+  import vueFullcalendar from 'vue-fullcalendar'
+  import moment from 'moment'
+  let today = new Date()
+
+  export default {
+    props: {
+      tasks: {
+        type: Array,
+        default: []
+      }
+    },
+    components: {
+      vueFullcalendar
+    },
+    computed : {
+      getEvents() {
+        let allEvents = [];
+        for (let x in this.tasks){
+          allEvents.push({
+            title: this.tasks[x].name,
+            start: moment(this.tasks[x].dueDate).format('MM/DD/YYYY'),
+            end: moment(this.tasks[x].dueDate).format('MM/DD/YYYY')
+          })
+        }
+        return allEvents;
+      }
+    }
+  }
+  </script>
