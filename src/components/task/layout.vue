@@ -16,14 +16,11 @@
       <div class="tile is-child box calendar-box">
         <calendar :tasks="tasks"/>
       </div>
-      <div class="tile is-child box">
-        <statusReporter :status="tasksStatus"/>
-      </div>
-
     </div>
   </div>
   <taskFooter :isCompletedChecked="isCompletedChecked"
                :isToDoChecked="isToDoChecked"
+               :status="tasksStatus"
                @showCompleted="showCompletedToggle"
                @showToDo="showToDoToggle"/>
 </div>
@@ -42,7 +39,8 @@ export default {
   data () {
     return {
       isCompletedChecked: false,
-      isToDoChecked: false
+      isToDoChecked: false,
+      isAllTasksChecked: true
     }
   },
   methods: {

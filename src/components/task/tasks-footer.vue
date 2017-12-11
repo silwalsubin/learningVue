@@ -1,8 +1,8 @@
 <template>
     <footer id="tasks-footer" class="footer">
       <div class="buttons has-addons">
-        <span :class="getCompletedButtonCss()" @click="showCompleted">Completed</span>
-        <span :class="getToDoButtonCss()" @click="showToDo">ToDo</span>
+        <span :class="getCompletedButtonCss()" @click="showCompleted">Completed ({{status.complete}})</span>
+        <span :class="getToDoButtonCss()" @click="showToDo">ToDo ({{status.toDo}})</span>
       </div>
     </footer>
 </template>
@@ -21,6 +21,16 @@ export default {
     isToDoChecked : {
       type: Boolean,
       default: false
+    },
+    status: {
+      type: Object,
+      default() {
+        return {
+          complete: 0,
+          toDo: 0,
+          total: 0
+        }
+      }
     }
   },
   data () {
@@ -36,6 +46,9 @@ export default {
     getToDoButtonCss(){
       return this.isToDoChecked === true ?
         buttonSelectedCss : buttonCss;
+    },
+    getAllTasksButtonCss(){
+
     },
     getButtonCss(){
         return buttonCss;
