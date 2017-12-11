@@ -3,44 +3,30 @@
   <entry @addTask="addTask"/>
   <div id="layout" class="tile is-ancestor">
     <div class="tile is-parent">
-      <list class="tile is-child box" :tasks="tasks"
-              :isCompletedChecked="isCompletedChecked"
-              :isToDoChecked="isToDoChecked"
-              @addTask="addTask"
-              @deleteTask="deleteTask"
-              @changeStatus="changeStatus"
-              @updateTask="updateTask"
-              @changeOrder="changeOrder"/>
+      <listLayout class="tile is-child box" :statusFilter="statusFilter"/>
     </div>
     <div class="tile is-6 is-vertical is-parent">
       <div class="tile is-child box calendar-box">
-        <calendar :tasks="tasks"/>
+        <calendarLayout/>
       </div>
     </div>
   </div>
-  <taskFooter :isCompletedChecked="isCompletedChecked"
-               :isToDoChecked="isToDoChecked"
-               :status="tasksStatus"
-               @showCompleted="showCompletedToggle"
-               @showToDo="showToDoToggle"/>
+  <footerLayout @filterRequested="filterData"/>
 </div>
 </template>
 
 <script>
-import statusReporter from '../status-report/status-reporter'
-import list from './list'
+import listLayout from './list-layout'
 import notify from '../../notification'
-import calendar from '../calendar/calendar'
+import calendarLayout from '../calendar/calendar-layout'
 import entry from './entry'
-import taskFooter from './tasks-footer'
+import footerLayout from '../footer/footer-layout'
 
 export default {
   name: 'layout',
   data () {
     return {
-      isCompletedChecked: false,
-      isToDoChecked: false,
-      isAllTasksChecked: true
+      statusFilter: {}
     }
   },
   methods: {
@@ -50,49 +36,17 @@ export default {
         notify(message);
       });
     },
-    changeOrder(updatedList){
-      this.$store.dispatch('changeOrder', updatedList);
-    },
-    changeStatus(id){
-      this.$store.dispatch('changeStatus', id);
-    },
-    deleteTask(id){
-      this.$store.dispatch('deleteTask', id).then(() => {
-        let message = `Task ${this.tasks.find(x => x.id === id).name}
-                       deleted successfully.`
-        notify(message);
-      });
-    },
-    showCompletedToggle(){
-      this.isToDoChecked = false;
-      this.isCompletedChecked = !this.isCompletedChecked;
-    },
-    showToDoToggle(){
-      this.isCompletedChecked = false;
-      this.isToDoChecked = !this.isToDoChecked;
-    },
-    updateTask(task){
-      var originalName = `${this.tasks.find(x => x.id === task.id).name}`;
-      this.$store.dispatch('updateTask', task);
+    filterData(filter){
+      this.statusFilter = filter;
     }
   },
   computed: {
-    tasks() {
-      return this.$store.getters.getTasks;
-    },
-    tasksStatus(){
-      return this.$store.getters.getTasksStatusReport;
-    }
   },
   components: {
-    statusReporter,
-    calendar,
-    list,
+    calendarLayout,
+    listLayout,
     entry,
-    taskFooter
-  },
-  mounted(){
-    this.$store.dispatch('getTasksData');
+    footerLayout
   }
 }
 </script>

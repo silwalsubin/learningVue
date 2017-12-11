@@ -10,6 +10,7 @@
          </header>
          <section class="modal-card-body">
            <list :tasks="getFilteredTasks"/>
+
          </section>
        </div>
      </div>
@@ -58,7 +59,7 @@
       },
       getFilteredTasks() {
         return this.tasks.filter
-                    (x => moment(x.dueDate).format('MM/DD/YYYY') === this.selectedDate );
+        (x => moment(x.dueDate).format('MM/DD/YYYY') === this.selectedDate );
       }
     },
     methods: {

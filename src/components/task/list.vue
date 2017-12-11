@@ -18,8 +18,6 @@
 import draggable from 'vuedraggable'
 import taskItem from './task-item'
 
-
-
 export default {
   name: "tasks-list",
   props: {
@@ -27,13 +25,14 @@ export default {
       type: Array,
       default: []
     },
-    isToDoChecked: {
-      type: Boolean,
-      default: false
-    },
-    isCompletedChecked: {
-      type: Boolean,
-      default: false
+    statusFilter: {
+      type: Object,
+      default() {
+        return {
+          isCompletedChecked: false,
+          isToDoChecked: false
+        }
+      }
     }
   },
   data () {
@@ -67,9 +66,9 @@ export default {
     },
     filteredTask() {
       let result = this.tasks;
-      result = this.isCompletedChecked === true ?
+      result = this.statusFilter.isCompletedChecked === true ?
                result.filter(x => x.isComplete === true) : result;
-      result = this.isToDoChecked === true ?
+      result = this.statusFilter.isToDoChecked === true ?
                result.filter(x => x.isComplete === false) : result;
       return result;
     }

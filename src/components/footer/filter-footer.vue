@@ -1,5 +1,5 @@
 <template>
-    <footer id="tasks-footer" class="footer">
+    <footer id="filter-footer" class="footer">
       <div class="buttons has-addons">
         <span :class="getCompletedButtonCss()" @click="showCompleted">Completed ({{status.complete}})</span>
         <span :class="getToDoButtonCss()" @click="showToDo">ToDo ({{status.toDo}})</span>
@@ -8,11 +8,10 @@
 </template>
 
 <script>
-
 let buttonCss = "button is-light footer-button";
 let buttonSelectedCss = "button is-light footer-button is-success";
 export default {
-  name: "tasks-footer",
+  name: "filter-footer",
   props: {
     isCompletedChecked : {
       type: Boolean,
