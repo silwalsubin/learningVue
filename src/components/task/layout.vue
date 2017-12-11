@@ -13,12 +13,13 @@
               @changeOrder="changeOrder"/>
     </div>
     <div class="tile is-6 is-vertical is-parent">
-      <div class="tile is-child box">
-        <statusReporter :status="tasksStatus"/>
-      </div>
       <div class="tile is-child box calendar-box">
         <calendar :tasks="tasks"/>
       </div>
+      <div class="tile is-child box">
+        <statusReporter :status="tasksStatus"/>
+      </div>
+
     </div>
   </div>
   <taskFooter :isCompletedChecked="isCompletedChecked"

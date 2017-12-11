@@ -1,16 +1,40 @@
-.task-name-input {
+$completedColor : #d3ffdd;
+$toDoColor: white;
+
+.task-name-input-disabled {
   border: none;
-  max-width: 360px;
-  &:hover {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-  }
-  &:focus {
-    border: none;
-  }
+  cursor: move;
+}
+
+.task-name-input-enabled {
+  border: 1px solid black;
+  cursor: auto;
 }
 
 .task-list{
   margin-top: 20px;
+}
+
+
+.task-name-box{
+  cursor: move;
+  padding: 5px;
+}
+
+.task-name-span i{
+  padding-top: 10px;
+  cursor: auto;
+  font-size: 20px;
+}
+
+.show {
+  display: show;
+}
+
+.hide {
+  display: none;
+}
+
+.taskCompleted  {
+  background-color: $completedColor;
 }

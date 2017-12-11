@@ -28,6 +28,8 @@ article {
 .input {
   max-width: 90%;
   display: inline;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 .footer-button {
@@ -41,26 +43,16 @@ article {
   color: black;
 }
 
-.message-header {
-  margin: 0 0 0 0
-}
-
-
-
-.vdp-datepicker input {
-  width: 20px;
-  height: inherit;
-}
-
-column .datePicker {
-  width: 200px;
-}
-
-.fa {
-  font-size: 19px;
-}
 
 .tile{
   margin-left: 20px;
   margin-right: 20px;
+}
+
+.fa-remove{
+  color: red;
+}
+
+.fa-check{
+  color: green;
 }
