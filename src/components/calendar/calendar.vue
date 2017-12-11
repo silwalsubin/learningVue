@@ -1,15 +1,35 @@
 <template>
-  <vueFullcalendar :events="getEvents" @eventClick="eventSelected" locale="en"/>
+  <div>
+     <vueFullcalendar :events="getEvents" @eventClick="eventSelected" locale="en"/>
+     <div :class="getModalCss">
+       <div class="modal-background"></div>
+       <div class="modal-card">
+         <header class="modal-card-head">
+           <p class="modal-card-title">{{modalTitle}}</p>
+           <button class="delete" aria-label="close" @click="closeModal()"></button>
+         </header>
+         <section class="modal-card-body">
+           <list :tasks="getFilteredTasks"/>
+         </section>
+       </div>
+     </div>
+  </div>
 </template>
 
 <script>
-
-  import vueFullcalendar from 'vue-fullcalendar'
-  import swal from 'sweetalert'
-  import moment from 'moment'
+  import list from '../task/list'
+  import vueFullcalendar from 'vue-fullcalendar';
+  import moment from 'moment';
   let today = new Date()
 
   export default {
+    data(){
+      return {
+        modalCss : "modal",
+        modalTitle: "",
+        selectedDate : ""
+      }
+    },
     props: {
       tasks: {
         type: Array,
@@ -17,7 +37,8 @@
       }
     },
     components: {
-      vueFullcalendar
+      vueFullcalendar,
+      list
     },
     computed : {
       getEvents() {
@@ -27,27 +48,27 @@
         for (let x in allDueDates){
           allEvents.push({
             start: moment(allDueDates[x]).format('MM/DD/YYYY'),
-            title: this.tasks.filter((y) => {
-              return y.dueDate === allDueDates[x]
-            }).length
+            title: this.tasks.filter( y => y.dueDate === allDueDates[x]).length
           });
         }
         return allEvents;
+      },
+      getModalCss() {
+        return this.modalCss;
+      },
+      getFilteredTasks() {
+        return this.tasks.filter
+                    (x => moment(x.dueDate).format('MM/DD/YYYY') === this.selectedDate );
       }
     },
     methods: {
+      closeModal(){
+        this.modalCss = "modal";
+      },
       eventSelected(event){
-        let selectedTasks = this.tasks.filter
-                            (x => moment(x.dueDate).format('MM/DD/YYYY') === event.start);
-        let message = "";
-        for (let x in selectedTasks){
-          message = message + selectedTasks[x].name + ", "
-        }
-        swal ({
-          title: `Tasks Due ${event.start}`,
-          text: message.slice(0, -2)
-        })
-        console.log(message);
+        this.modalCss = "modal is-active";
+        this.modalTitle = `Task(s) due on ${event.start}`;
+        this.selectedDate = event.start;
       }
     }
   }
