@@ -7,7 +7,9 @@
             @changeStatus="changeStatus"
             @updateTask="updateTask"
             @changeOrder="changeOrder"/>
-    <calendar :tasks="tasks"/>
+    <div class="tile calendar">
+          <calendar :tasks="tasks"/>
+    </div>
   </div>
 </template>
 
