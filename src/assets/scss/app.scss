@@ -60,51 +60,7 @@ column .datePicker {
   font-size: 19px;
 }
 
-
-
-//calendar CSS
-
-.comp-full-calendar {
-  font-size: inherit;
-  height: auto;
-}
-
-.full-calendar-header {
-  width: 520px;
-}
-
-.dates {
-  height: 40px;
-}
-.header-left {
-  width: 0px;
-}
-.header-right {
-  width: 0px;
-}
-.header-center {
-  width: 10px;
-}
-.header-center span{
-  font-size: 13px;
-}
-
-.events-day {
-  min-height: 50px;
-}
-
-.full-calendar-body .dates .week-row .day-cell {
-    flex: 1;
-    min-height: 50px;
-    padding: 4px;
-    border-right: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.full-calendar-body .dates .dates-events .events-week .events-day {
-    cursor: pointer;
-    flex: 1;
-    min-height: 50px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.tile{
+  margin-left: 20px;
+  margin-right: 20px;
 }

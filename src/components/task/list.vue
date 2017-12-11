@@ -1,6 +1,5 @@
 <template>
   <div class = "tasks-list">
-    <entry @addTask="addTask"/>
     <draggable v-model="tasksList" class="task-list">
       <article class="message is-small" v-for="task in tasksList">
         <taskItem v-show="filteredTask.includes(task)"
@@ -10,20 +9,14 @@
                   @update="updateTask"/>
       </article>
     </draggable>
-
-    <taskFooter :isCompletedChecked="isCompletedChecked"
-                 :isToDoChecked="isToDoChecked"
-                 @showCompleted="showCompletedToggle"
-                 @showToDo="showToDoToggle"/>
   </div>
 
 </template>
 
 <script>
 import draggable from 'vuedraggable'
-import taskFooter from './tasks-footer'
 import taskItem from './task-item'
-import entry from './entry'
+
 
 
 export default {
@@ -32,19 +25,22 @@ export default {
     tasks: {
       type: Array,
       default: []
+    },
+    isToDoChecked: {
+      type: Boolean,
+      default: false
+    },
+    isCompletedChecked: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
-      enteredTask: '',
-      isCompletedChecked: false,
-      isToDoChecked: false
+      enteredTask: ''
     }
   },
   methods: {
-    addTask(task){
-      this.$emit("addTask", task);
-    },
     deleteTask(id){
       this.$emit("deleteTask", id);
     },
@@ -53,21 +49,11 @@ export default {
     },
     updateTask(task){
       this.$emit("updateTask", task);
-    },
-    showCompletedToggle(){
-      this.isToDoChecked = false;
-      this.isCompletedChecked = !this.isCompletedChecked;
-    },
-    showToDoToggle(){
-      this.isCompletedChecked = false;
-      this.isToDoChecked = !this.isToDoChecked;
-    },
+    }
   },
   components: {
     draggable,
-    taskItem,
-    taskFooter,
-    entry
+    taskItem
   },
   computed: {
     tasksList: {
