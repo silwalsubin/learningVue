@@ -2,7 +2,7 @@
   <div class = "tasks-list">
     <draggable v-model="tasksList" class="task-list">
       <article class="message is-small" v-for="task in tasksList">
-        <taskItem v-show="filteredTask.includes(task)"
+        <task v-show="filteredTask.includes(task)"
                   :task="task"
                   :showDueDate="selectedDate === ''"
                   @delete="deleteTask"
@@ -15,7 +15,7 @@
 
 <script>
 import draggable from 'vuedraggable'
-import taskItem from './task-item'
+import task from './task'
 
 export default {
   name: "tasks-list",
@@ -56,7 +56,7 @@ export default {
   },
   components: {
     draggable,
-    taskItem
+    task
   },
   computed: {
     tasksList: {
