@@ -10,10 +10,11 @@
                    @blur="onblur(task)" type="text"
                    @dblclick="enableEdit()" v-model="task.name"/>
         </strong>
-        <span :class="getControlCss">
+        <span v-show="isShowControlEnabled" class="task-name-span">
             <i :class="getDoneTodoCss(task)" @click="changeStatus(task)"></i>
             <i class="fa fa-remove fa-lg" @click="deleteTask(task)"></i>
         </span>
+        <small v-show="showDueDate && !isShowControlEnabled">{{task.dueDate}}</small>
       </p>
       </div>
     </div>
@@ -36,12 +37,17 @@ export default {
     return {
       inputBoxCss: inputBoxDisabled,
       readOnly: true,
-      controlCss: controlCssDisabled
+      controlCss: controlCssDisabled,
+      isShowControlEnabled: false
     }
   },
   props: {
     task : {
       type: Object
+    },
+    showDueDate: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
@@ -60,10 +66,10 @@ export default {
       "fa fa-check fa-lg" : "fa fa-undo fa-lg";
     },
     hideControls(){
-      this.controlCss = controlCssDisabled;
+      this.isShowControlEnabled = false;
     },
     showControls(){
-      this.controlCss = controlCssEnabled;
+      this.isShowControlEnabled = true;
     },
     onblur(task){
       this.readOnly = true;

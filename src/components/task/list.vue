@@ -4,6 +4,7 @@
       <article class="message is-small" v-for="task in tasksList">
         <taskItem v-show="filteredTask.includes(task)"
                   :task="task"
+                  :showDueDate="selectedDate === ''"
                   @delete="deleteTask"
                   @changeStatus="changeStatus"
                   @update="updateTask"/>
