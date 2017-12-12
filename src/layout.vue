@@ -1,22 +1,8 @@
 <template>
 <div>
   <entry @addTask="addTask"/>
-  <div class="tabs is-toggle is-centered">
-    <ul>
-      <li :class="getListViewCss">
-        <a @click="listViewSelected()">
-          <span class="icon is-small"><i class="fa fa-list"></i></span>
-          <span>List View</span>
-        </a>
-      </li>
-      <li :class="getCalendarViewCss">
-        <a @click="calendarViewSelected()">
-          <span class="icon is-small"><i class="fa fa-calendar"></i></span>
-          <span>Calendar View</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+  <selectView @listViewSelected="listViewSelected"
+              @calendarViewSelected="calendarViewSelected"/>
   <div id="layout" class="tile is-ancestor">
     <div class="tile is-parent" v-show="showListView">
       <listLayout class="tile is-child" :statusFilter="statusFilter"/>
@@ -32,10 +18,11 @@
 </template>
 
 <script>
-import calendarLayout from './components/calendar/calendar-layout'
 import entry from './components/task/entry'
-import footerLayout from './components/footer/footer-layout'
+import selectView from './components/view-selector/select-view'
 import listLayout from './components/task/list-layout'
+import calendarLayout from './components/calendar/calendar-layout'
+import footerLayout from './components/footer/footer-layout'
 import notify from './notification'
 
 export default {
@@ -55,30 +42,23 @@ export default {
       });
     },
     calendarViewSelected(){
-      this.isCalendarViewEnabled = true;
-      this.isListViewEnabled = !this.isCalendarViewEnabled;
-    },
-    filterData(filter){
-      this.statusFilter = filter;
+      this.isListViewEnabled = false;
     },
     listViewSelected(){
       this.isListViewEnabled = true;
-      this.isCalendarViewEnabled = !this.isListViewEnabled;
+    },
+    filterData(filter){
+      this.statusFilter = filter;
     }
   },
   components: {
-    calendarLayout,
     entry,
-    footerLayout,
-    listLayout
+    selectView,
+    listLayout,
+    calendarLayout,
+    footerLayout
   },
   computed : {
-    getListViewCss() {
-      return this.isListViewEnabled === true ? "is-active" : "";
-    },
-    getCalendarViewCss(){
-      return this.isCalendarViewEnabled === true ? "is-active" : "";
-    },
     showListView(){
       return this.isListViewEnabled;
     }
