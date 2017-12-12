@@ -2,7 +2,7 @@
 <div>
   <selectView @listViewSelected="listViewSelected"
               @calendarViewSelected="calendarViewSelected"/>
-  <entry @addTask="addTask"/>
+  <entryLayout/>
   <div id="layout" class="tile is-ancestor">
     <div class="tile is-parent" v-show="showListView">
       <listLayout class="tile is-child" :statusFilter="statusFilter"/>
@@ -18,12 +18,11 @@
 </template>
 
 <script>
-import entry from './components/task/entry'
+import entryLayout from './components/entryFields/entry-layout'
 import selectView from './components/view-selector/select-view'
 import listLayout from './components/task/list-layout'
 import calendarLayout from './components/calendar/calendar-layout'
 import footerLayout from './components/footer/footer-layout'
-import notify from './notification'
 
 export default {
   name: 'layout',
@@ -35,12 +34,6 @@ export default {
     }
   },
   methods: {
-    addTask(task){
-      this.$store.dispatch('addTask', task).then(() => {
-        let message = `Task ${name} added successfully.`
-        notify(message);
-      });
-    },
     calendarViewSelected(){
       this.isListViewEnabled = false;
     },
@@ -52,8 +45,8 @@ export default {
     }
   },
   components: {
-    entry,
     selectView,
+    entryLayout,
     listLayout,
     calendarLayout,
     footerLayout

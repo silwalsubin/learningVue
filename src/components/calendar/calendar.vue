@@ -1,28 +1,14 @@
 <template>
   <div>
-     <vueFullcalendar :events="getEvents" @eventClick="eventSelected" locale="en"/>
-     <div :class="getModalCss">
-       <div class="modal-background"></div>
-       <div class="modal-card">
-         <header class="modal-card-head">
-           <p class="modal-card-title">{{modalTitle}}</p>
-           <button class="delete" aria-label="close" @click="closeModal()"></button>
-         </header>
-         <section class="modal-card-body">
-           <list :tasks="getFilteredTasks"
-                 @deleteTask="deleteTask"
-                 @changeStatus="changeStatus"
-                 @updateTask="updateTask"/>
-
-         </section>
-       </div>
-     </div>
+     <vueFullcalendar :events="getEvents" @dayClick="daySelected"
+                       @eventClick="daySelected" locale="en"/>
+     <listModal :class="getModalCss" :selectedDate="selectedDate" @modalClosed="closeModal()"/>
   </div>
 </template>
 
 <script>
-  import list from '../task/list'
   import vueFullcalendar from 'vue-fullcalendar';
+  import listModal from '../modals/list-modal'
   import moment from 'moment';
 
   export default {
@@ -41,7 +27,7 @@
     },
     components: {
       vueFullcalendar,
-      list
+      listModal
     },
     methods: {
       changeStatus(id){
@@ -53,10 +39,9 @@
       deleteTask(id){
         this.$emit('deleteTask', id);
       },
-      eventSelected(event){
+      daySelected(date){
         this.modalCss = "modal is-active";
-        this.modalTitle = `Task(s) due on ${event.start}`;
-        this.selectedDate = event.start;
+        this.selectedDate = moment(date).format('YYYY-MM-DD');
       },
       updateTask(task){
         this.$emit('updateTask', task);

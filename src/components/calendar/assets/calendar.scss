@@ -13,7 +13,7 @@
 }
 
 .full-calendar-body .dates .dates-events .events-week .events-day {
-  cursor: default;
+  cursor: pointer;
   min-height: 50px;
   overflow: hidden;
   text-overflow: ellipsis;
