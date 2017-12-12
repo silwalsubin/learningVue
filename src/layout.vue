@@ -1,17 +1,33 @@
 <template>
 <div>
   <entry @addTask="addTask"/>
+  <div class="tabs is-toggle is-centered">
+    <ul>
+      <li :class="getListViewCss">
+        <a @click="listViewSelected()">
+          <span class="icon is-small"><i class="fa fa-list"></i></span>
+          <span>List View</span>
+        </a>
+      </li>
+      <li :class="getCalendarViewCss">
+        <a @click="calendarViewSelected()">
+          <span class="icon is-small"><i class="fa fa-calendar"></i></span>
+          <span>Calendar View</span>
+        </a>
+      </li>
+    </ul>
+  </div>
   <div id="layout" class="tile is-ancestor">
-    <div class="tile is-parent">
+    <div class="tile is-parent" v-show="showListView">
       <listLayout class="tile is-child box" :statusFilter="statusFilter"/>
     </div>
-    <div class="tile is-6 is-vertical is-parent">
+    <div class="tile is-6 is-vertical is-parent" v-show="!showListView">
       <div class="tile is-child box calendar-box">
         <calendarLayout/>
       </div>
     </div>
   </div>
-  <footerLayout @filterRequest="filterData"/>
+  <footerLayout @filterRequest="filterData" v-show="showListView"/>
 </div>
 </template>
 
@@ -26,7 +42,9 @@ export default {
   name: 'layout',
   data () {
     return {
-      statusFilter: {}
+      statusFilter: {},
+      isListViewEnabled: true,
+      isCalendarViewEnabled: false
     }
   },
   methods: {
@@ -36,8 +54,16 @@ export default {
         notify(message);
       });
     },
+    calendarViewSelected(){
+      this.isCalendarViewEnabled = true;
+      this.isListViewEnabled = !this.isCalendarViewEnabled;
+    },
     filterData(filter){
       this.statusFilter = filter;
+    },
+    listViewSelected(){
+      this.isListViewEnabled = true;
+      this.isCalendarViewEnabled = !this.isListViewEnabled;
     }
   },
   components: {
@@ -45,6 +71,17 @@ export default {
     entry,
     footerLayout,
     listLayout
+  },
+  computed : {
+    getListViewCss() {
+      return this.isListViewEnabled === true ? "is-active" : "";
+    },
+    getCalendarViewCss(){
+      return this.isCalendarViewEnabled === true ? "is-active" : "";
+    },
+    showListView(){
+      return this.isListViewEnabled;
+    }
   }
 }
 </script>
