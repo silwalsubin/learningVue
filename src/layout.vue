@@ -19,10 +19,10 @@
   </div>
   <div id="layout" class="tile is-ancestor">
     <div class="tile is-parent" v-show="showListView">
-      <listLayout class="tile is-child box" :statusFilter="statusFilter"/>
+      <listLayout class="tile is-child" :statusFilter="statusFilter"/>
     </div>
-    <div class="tile is-6 is-vertical is-parent" v-show="!showListView">
-      <div class="tile is-child box calendar-box">
+    <div class="tile is-parent" v-show="!showListView">
+      <div class="tile is-child">
         <calendarLayout/>
       </div>
     </div>
