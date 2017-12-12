@@ -9,7 +9,10 @@
            <button class="delete" aria-label="close" @click="closeModal()"></button>
          </header>
          <section class="modal-card-body">
-           <list :tasks="getFilteredTasks"/>
+           <list :tasks="getFilteredTasks"
+                 @deleteTask="deleteTask"
+                 @changeStatus="changeStatus"
+                 @updateTask="updateTask"/>
 
          </section>
        </div>
@@ -21,7 +24,6 @@
   import list from '../task/list'
   import vueFullcalendar from 'vue-fullcalendar';
   import moment from 'moment';
-  let today = new Date()
 
   export default {
     data(){
@@ -41,10 +43,28 @@
       vueFullcalendar,
       list
     },
+    methods: {
+      changeStatus(id){
+        this.$emit('changeStatus', id);
+      },
+      closeModal(){
+        this.modalCss = "modal";
+      },
+      deleteTask(id){
+        this.$emit('deleteTask', id);
+      },
+      eventSelected(event){
+        this.modalCss = "modal is-active";
+        this.modalTitle = `Task(s) due on ${event.start}`;
+        this.selectedDate = event.start;
+      },
+      updateTask(task){
+        this.$emit('updateTask', task);
+      }
+    },
     computed : {
       getEvents() {
-        let allDueDates = [];
-        allDueDates = ([...new Set(this.tasks.map(x => x.dueDate))]);
+        let allDueDates = ([...new Set(this.tasks.map(x => x.dueDate))]);
         let allEvents = [];
         for (let x in allDueDates){
           allEvents.push({
@@ -60,16 +80,6 @@
       getFilteredTasks() {
         return this.tasks.filter
         (x => moment(x.dueDate).format('MM/DD/YYYY') === this.selectedDate );
-      }
-    },
-    methods: {
-      closeModal(){
-        this.modalCss = "modal";
-      },
-      eventSelected(event){
-        this.modalCss = "modal is-active";
-        this.modalTitle = `Task(s) due on ${event.start}`;
-        this.selectedDate = event.start;
       }
     }
   }

@@ -8,8 +8,7 @@
 
 <script>
 import welcome from './components/welcome'
-import layout from './components/task/layout'
-
+import layout from './layout'
 
 export default {
   name: 'app',

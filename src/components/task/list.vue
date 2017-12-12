@@ -1,6 +1,5 @@
 <template>
   <div class = "tasks-list">
-    <h1 class="heading">All Tasks</h1>
     <draggable v-model="tasksList" class="task-list">
       <article class="message is-small" v-for="task in tasksList">
         <taskItem v-show="filteredTask.includes(task)"
@@ -11,7 +10,6 @@
       </article>
     </draggable>
   </div>
-
 </template>
 
 <script>

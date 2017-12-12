@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import listLayout from './list-layout'
-import notify from '../../notification'
-import calendarLayout from '../calendar/calendar-layout'
-import entry from './entry'
-import footerLayout from '../footer/footer-layout'
+import listLayout from './components/task/list-layout'
+import notify from './notification'
+import calendarLayout from './components/calendar/calendar-layout'
+import entry from './components/task/entry'
+import footerLayout from './components/footer/footer-layout'
 
 export default {
   name: 'layout',
@@ -50,7 +50,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import './assets/tasks.scss';
-</style>
