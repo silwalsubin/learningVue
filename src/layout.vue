@@ -1,8 +1,8 @@
 <template>
 <div>
-  <entry @addTask="addTask"/>
   <selectView @listViewSelected="listViewSelected"
               @calendarViewSelected="calendarViewSelected"/>
+  <entry @addTask="addTask"/>
   <div id="layout" class="tile is-ancestor">
     <div class="tile is-parent" v-show="showListView">
       <listLayout class="tile is-child" :statusFilter="statusFilter"/>

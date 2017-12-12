@@ -1,4 +1,6 @@
 <template>
+  <div>
+  <p v-show="tasks.length === 0">No Tasks to Show. Create a new Task.</p>
   <list :tasks="tasks"
         :statusFilter="statusFilter"
         @addTask="addTask"
@@ -6,6 +8,7 @@
         @changeStatus="changeStatus"
         @updateTask="updateTask"
         @changeOrder="changeOrder"/>
+  </div>
 </template>
 
 <script>

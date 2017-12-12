@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="box">
   <div class="field">
     <p class="control">
       <input class="input" type="text" v-model="enteredTask"
