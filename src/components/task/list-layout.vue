@@ -3,7 +3,7 @@
   <p v-show="tasks.length === 0">No Tasks to Show. Create a new Task.</p>
   <list :tasks="tasks"
         :statusFilter="statusFilter"
-        @addTask="addTask"
+        :selectedDate="selectedDate"
         @deleteTask="deleteTask"
         @changeStatus="changeStatus"
         @updateTask="updateTask"
@@ -18,6 +18,10 @@ import notify from '../../notification'
 export default {
   name: 'list-layout',
   props: {
+    selectedDate: {
+      type: String,
+      default: ""
+    },
     statusFilter: {
       type: Object,
       default() {
@@ -29,12 +33,6 @@ export default {
     }
   },
   methods: {
-    addTask(task){
-      this.$store.dispatch('addTask', task).then(() => {
-        let message = `Task ${name} added successfully.`
-        notify(message);
-      });
-    },
     changeOrder(updatedList){
       this.$store.dispatch('changeOrder', updatedList);
     },

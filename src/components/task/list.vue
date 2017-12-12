@@ -31,6 +31,10 @@ export default {
           isToDoChecked: false
         }
       }
+    },
+    selectedDate: {
+      type: String,
+      default: ""
     }
   },
   data () {
@@ -62,13 +66,20 @@ export default {
         this.$emit("changeOrder", value);
       }
     },
-    filteredTask() {
+    filterByStatus() {
       let result = this.tasks;
       result = this.statusFilter.isCompletedChecked === true ?
                result.filter(x => x.isComplete === true) : result;
       result = this.statusFilter.isToDoChecked === true ?
                result.filter(x => x.isComplete === false) : result;
       return result;
+    },
+    filterByDate() {
+      return this.tasks.filter(x => x.dueDate === this.selectedDate);
+    },
+    filteredTask() {
+      return (this.selectedDate !== "")?
+      this.filterByDate : this.filterByStatus;
     }
   }
 }

@@ -8,11 +8,7 @@
       </header>
       <section class="modal-card-body">
         <entryLayout :showDueDateInput=false :externalDueDate="selectedDate"/>
-        <!-- <list :tasks="getFilteredTasks"
-              @deleteTask="deleteTask"
-              @changeStatus="changeStatus"
-              @updateTask="updateTask"/> -->
-
+        <listLayout :selectedDate="selectedDate"/>
       </section>
     </div>
   </div>
@@ -21,6 +17,7 @@
 
 <script>
 import entryLayout from '../entryFields/entry-layout'
+import listLayout from '../task/list-layout'
 export default {
   props: {
     selectedDate: {
@@ -46,7 +43,8 @@ export default {
     }
   },
   components: {
-    entryLayout
+    entryLayout,
+    listLayout
   }
 }
 </script>
