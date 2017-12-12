@@ -1,5 +1,5 @@
 <template>
-    <footer id="filter-footer" class="footer">
+    <footer id="footer-filter" class="footer">
       <div class="buttons has-addons">
         <span :class="getCompletedButtonCss()" @click="showCompleted">Completed ({{status.complete}})</span>
         <span :class="getToDoButtonCss()" @click="showToDo">ToDo ({{status.toDo}})</span>
@@ -11,7 +11,7 @@
 let buttonCss = "button is-light footer-button";
 let buttonSelectedCss = "button is-light footer-button is-success";
 export default {
-  name: "filter-footer",
+  name: "footer-filter",
   props: {
     isCompletedChecked : {
       type: Boolean,
@@ -32,11 +32,6 @@ export default {
       }
     }
   },
-  data () {
-    return {
-      enteredTask: ''
-    }
-  },
   methods: {
     getCompletedButtonCss(){
       return this.isCompletedChecked === true ?
@@ -45,12 +40,6 @@ export default {
     getToDoButtonCss(){
       return this.isToDoChecked === true ?
         buttonSelectedCss : buttonCss;
-    },
-    getAllTasksButtonCss(){
-
-    },
-    getButtonCss(){
-        return buttonCss;
     },
     showCompleted(){
       this.$emit("showCompleted");

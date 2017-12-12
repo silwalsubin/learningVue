@@ -86,5 +86,5 @@
   </script>
 
   <style lang="scss">
-@import './assets/calendar.scss';
+  @import './assets/calendar.scss';
   </style>

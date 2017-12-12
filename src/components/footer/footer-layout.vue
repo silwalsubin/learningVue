@@ -1,5 +1,5 @@
 <template>
-  <filterFooter id="footer-layout" :isCompletedChecked="isCompletedChecked"
+  <footerFilter id="footer-layout" :isCompletedChecked="isCompletedChecked"
                :isToDoChecked="isToDoChecked"
                :status="tasksStatus"
                @showCompleted="showCompletedToggle"
@@ -7,22 +7,21 @@
 </template>
 
 <script>
-import filterFooter from './filter-footer'
+import footerFilter from './footer-filter'
 
 export default {
   name: 'footer-layout',
   data () {
     return {
       isCompletedChecked: false,
-      isToDoChecked: false,
-      isAllTasksChecked: true
+      isToDoChecked: false
     }
   },
   methods: {
     showCompletedToggle(){
       this.isToDoChecked = false;
       this.isCompletedChecked = !this.isCompletedChecked;
-      this.$emit("filterRequested", {
+      this.$emit("filterRequest", {
         isToDoChecked : this.isToDoChecked,
         isCompletedChecked : this.isCompletedChecked
       });
@@ -30,7 +29,7 @@ export default {
     showToDoToggle(){
       this.isCompletedChecked = false;
       this.isToDoChecked = !this.isToDoChecked;
-      this.$emit("filterRequested", {
+      this.$emit("filterRequest", {
         isToDoChecked : this.isToDoChecked,
         isCompletedChecked : this.isCompletedChecked
       });
@@ -42,7 +41,7 @@ export default {
     }
   },
   components: {
-    filterFooter
+    footerFilter
   }
 }
 </script>

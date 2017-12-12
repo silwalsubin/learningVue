@@ -11,16 +11,16 @@
       </div>
     </div>
   </div>
-  <footerLayout @filterRequest="filterData"/>
+  <footerLayout @filterRequested="filterData"/>
 </div>
 </template>
 
 <script>
-import calendarLayout from './components/calendar/calendar-layout'
-import entry from './components/task/entry'
-import footerLayout from './components/footer/footer-layout'
-import listLayout from './components/task/list-layout'
-import notify from './notification'
+import listLayout from './list-layout'
+import notify from '../../notification'
+import calendarLayout from '../calendar/calendar-layout'
+import entry from './entry'
+import footerLayout from '../footer/footer-layout'
 
 export default {
   name: 'layout',
@@ -40,11 +40,17 @@ export default {
       this.statusFilter = filter;
     }
   },
+  computed: {
+  },
   components: {
     calendarLayout,
+    listLayout,
     entry,
-    footerLayout,
-    listLayout
+    footerLayout
   }
 }
 </script>
+
+<style lang="scss">
+@import './assets/tasks.scss';
+</style>
