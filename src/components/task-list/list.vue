@@ -24,7 +24,7 @@ export default {
       type: Array,
       default: []
     },
-    statusFilter: {
+    filterData: {
       type: Object,
       default() {
         return {
@@ -69,9 +69,9 @@ export default {
     },
     filterByStatus() {
       let result = this.tasks;
-      result = this.statusFilter.isCompletedChecked === true ?
+      result = this.filterData.isCompletedChecked === true ?
                result.filter(x => x.isComplete === true) : result;
-      result = this.statusFilter.isToDoChecked === true ?
+      result = this.filterData.isToDoChecked === true ?
                result.filter(x => x.isComplete === false) : result;
       return result;
     },

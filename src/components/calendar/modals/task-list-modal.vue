@@ -16,8 +16,8 @@
 
 
 <script>
-import entryLayout from '../entryFields/entry-layout'
-import listLayout from '../task/list-layout'
+import entryLayout from '../../entry-fields/entry-layout'
+import listLayout from '../../task-list/layout'
 export default {
   props: {
     selectedDate: {

@@ -2,8 +2,8 @@
   <div>
   <p v-show="tasks.length === 0 && this.selectedDate === ''">No Tasks to Show. Create a new Task.</p>
   <list :tasks="tasks"
-        :statusFilter="statusFilter"
-        :selectedDate="selectedDate"
+        :filterData="filterData"
+        :selected-date="selectedDate"
         @deleteTask="deleteTask"
         @changeStatus="changeStatus"
         @updateTask="updateTask"
@@ -22,7 +22,7 @@ export default {
       type: String,
       default: ""
     },
-    statusFilter: {
+    filterData: {
       type: Object,
       default() {
         return {

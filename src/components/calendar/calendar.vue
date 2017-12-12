@@ -1,14 +1,15 @@
 <template>
   <div>
      <vueFullcalendar :events="getEvents" @dayClick="daySelected"
-                       @eventClick="daySelected" locale="en"/>
-     <listModal :class="getModalCss" :selectedDate="selectedDate" @modalClosed="closeModal()"/>
+                       @eventClick="eventSelected" locale="en"/>
+     <listModal :class="getModalCss" :selectedDate="selectedDate"
+                @modalClosed="closeModal()"/>
   </div>
 </template>
 
 <script>
   import vueFullcalendar from 'vue-fullcalendar';
-  import listModal from '../modals/list-modal'
+  import listModal from './modals/task-list-modal'
   import moment from 'moment';
 
   export default {
@@ -42,6 +43,11 @@
       daySelected(date){
         this.modalCss = "modal is-active";
         this.selectedDate = moment(date).format('YYYY-MM-DD');
+      },
+      eventSelected(event){
+        this.modalCss = "modal is-active";
+        let eventDate = new Date(event.start);
+        this.selectedDate = moment(eventDate).format('YYYY-MM-DD');
       },
       updateTask(task){
         this.$emit('updateTask', task);

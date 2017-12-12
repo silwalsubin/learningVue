@@ -5,7 +5,7 @@
   <entryLayout/>
   <div id="layout" class="tile is-ancestor">
     <div class="tile is-parent" v-show="showListView">
-      <listLayout class="tile is-child" :statusFilter="statusFilter"/>
+      <listLayout class="tile is-child" :filterData="filterData"/>
     </div>
     <div class="tile is-parent" v-show="!showListView">
       <div class="tile is-child">
@@ -13,14 +13,14 @@
       </div>
     </div>
   </div>
-  <footerLayout @filterRequest="filterData" v-show="showListView"/>
+  <footerLayout @filterRequest="filterRequest" v-show="showListView"/>
 </div>
 </template>
 
 <script>
-import entryLayout from './components/entryFields/entry-layout'
+import entryLayout from './components/entry-fields/entry-layout'
 import selectView from './components/view-selector/select-view'
-import listLayout from './components/task/list-layout'
+import listLayout from './components/task-list/layout'
 import calendarLayout from './components/calendar/calendar-layout'
 import footerLayout from './components/footer/footer-layout'
 
@@ -28,7 +28,7 @@ export default {
   name: 'layout',
   data () {
     return {
-      statusFilter: {},
+      filterData: {},
       isListViewEnabled: true,
       isCalendarViewEnabled: false
     }
@@ -40,8 +40,8 @@ export default {
     listViewSelected(){
       this.isListViewEnabled = true;
     },
-    filterData(filter){
-      this.statusFilter = filter;
+    filterRequest(filter){
+      this.filterData = filter;
     }
   },
   components: {
