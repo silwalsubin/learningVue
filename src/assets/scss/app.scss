@@ -21,12 +21,19 @@ article {
   padding: 0 0 0 0 ;
 }
 
+.field{
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  margin: auto;
+}
+
+
 .heading {
   font-size: 20px;
 }
 
 .input {
-  max-width: 90%;
   display: inline;
   -webkit-box-shadow: none;
   box-shadow: none;

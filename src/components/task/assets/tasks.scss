@@ -2,11 +2,13 @@ $completedColor : #d3ffdd;
 $toDoColor: white;
 
 .task-name-input-disabled {
+  width: 90%;
   border: none;
   cursor: move;
 }
 
 .task-name-input-enabled {
+  width: 90%;
   border: 1px solid black;
   cursor: auto;
 }

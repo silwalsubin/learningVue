@@ -1,34 +1,34 @@
 <template>
-<div class ="columns is-gapless">
-    <div class="column is-4"></div>
-    <div class="column is-3 columns is-gapless">
-          <div class="column is-6">
-            <input class="input" type="text" v-model="enteredTask"
-                   placeholder="Enter a task"/>
-          </div>
-          <div class="column is-6">
-            <div class="control has-icons-left">
-              <flat-pickr
-                  v-model = "dueDate"
-                  :required="true"
-                  class="input"
-                  placeholder="Due date"
-                  name="date">
-                </flat-pickr>
-                <span class="icon is-small is-left">
-                  <i class="fa fa-calendar"></i>
-                </span>
-            </div>
-          </div>
-    </div>
-    <div class="column is-1">
-        <button class = "button is-success"
-                @click="addTask(enteredTask, dueDate)">Add</button>
-    </div>
-    <div class="column is-4"></div>
+<div class="container">
+  <div class="field">
+    <p class="control">
+      <input class="input" type="text" v-model="enteredTask"
+       placeholder="Enter a task">
+    </p>
+  </div>
+  <div class="field">
+    <p class="control has-icons-left">
+      <flat-pickr
+          v-model = "dueDate"
+          :required="true"
+          class="input"
+          placeholder="Due date"
+          name="date">
+        </flat-pickr>
+      <span class="icon is-small is-left">
+        <i class="fa fa-calendar"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control">
+      <button class="button is-success" @click="addTask(enteredTask, dueDate)">
+        Add
+      </button>
+    </p>
+  </div>
 </div>
 </template>
-
 
 <script>
 
@@ -39,7 +39,7 @@ export default {
   name: "entry",
   methods: {
     addTask(name, dueDate){
-      if (name === ""){
+      if (name.trim() === ""){
         swal("Error", "Name field cannot be empty", "error");
       }
       else if (dueDate === ""){
@@ -56,16 +56,6 @@ export default {
     return {
       enteredTask: '',
       dueDate: ''
-    }
-  },
-  computed: {
-    enteredValue: {
-      get() {
-        return this.enteredTask
-      },
-      set(value){
-
-      }
     }
   },
   components: {
