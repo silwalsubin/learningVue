@@ -1,20 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/img/myApp.png">
-    <welcome/>
-    <layout/>
+    <appHeader/>
+    <appLayout/>
   </div>
 </template>
 
 <script>
-import welcome from './components/welcome'
-import layout from './app-layout'
+import appHeader from './app-header'
+import appLayout from './app-layout'
 
 export default {
   name: 'app',
   components: {
-    welcome,
-    layout
+    appHeader,
+    appLayout
   }
 }
 </script>

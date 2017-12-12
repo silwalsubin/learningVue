@@ -1,6 +1,6 @@
 export default{
   addTask: (state, task) => {
-    state.tasks.push(task);
+    state.tasks.splice(0, 0, task);
   },
   changeStatus: (state, id) => {
     let task = state.tasks.find(x => x.id === id);

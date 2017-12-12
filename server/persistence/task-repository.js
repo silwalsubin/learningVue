@@ -6,7 +6,10 @@ export default {
     return db.getData('/').tasks;
   },
   add: (task) => {
-    db.push("/tasks[]", task, true);
+    let tasks = db.getData('/').tasks;
+    tasks.splice(0, 0, task);
+    db.delete('/tasks');
+    db.push('/tasks', tasks, true);
   },
   changeStatus: (id) => {
     let tasks = db.getData('/').tasks;
