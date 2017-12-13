@@ -63,7 +63,7 @@ export default {
     },
     getDoneTodoCss(task){
       return task.isComplete === false ?
-      "fa fa-check fa-lg" : "fa fa-undo fa-lg";
+      "fa fa-check-square fa-lg to-do-check-box": "fa fa-check-square fa-lg done-check-box";
     },
     hideControls(){
       this.isShowControlEnabled = false;

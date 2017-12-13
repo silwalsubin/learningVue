@@ -40,3 +40,24 @@ $toDoColor: white;
 .taskCompleted  {
   background-color: $completedColor;
 }
+
+.fa-remove{
+  color: #ff9191;
+  &:hover{
+    color: #cc4343;
+  }
+}
+
+.done-check-box{
+  color: #51ba82;
+  &:hover{
+    color: #27724a;
+  }
+}
+
+.to-do-check-box {
+  color: lightgrey;
+  &:hover{
+    color: grey;
+  }
+}
