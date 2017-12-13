@@ -1,13 +1,12 @@
 <template>
   <div>
-      <img src="./assets/img/myApp.png">
-      <section class = "hero">
-        <div class="hero-body">
-        <div class="container">
-          <h1 class="heading" v-bind:title = "msg">{{ msg }}</h1>
-        </div>
+    <section class = "hero">
+      <div class="hero-body">
+      <div class="container">
+        <h1 class="heading" v-bind:title = "msg">{{ msg }}</h1>
       </div>
-      </section>
+    </div>
+    </section>
 </div>
 </template>
 

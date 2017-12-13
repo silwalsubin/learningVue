@@ -1,5 +1,5 @@
 <template>
-<div class="box">
+<div class="box entrybox">
   <div class="field">
     <p class="control">
       <input class="input" type="text"
@@ -77,3 +77,7 @@ export default {
   }
 }
 </script>
+
+<style>
+@import './assets/entry-field.scss';
+</style>
