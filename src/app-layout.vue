@@ -2,7 +2,7 @@
 <div>
   <selectView @listViewSelected="listViewSelected"
               @calendarViewSelected="calendarViewSelected"/>
-  <entryLayout/>
+                  <!-- <containers/> -->
   <div id="layout" class="tile is-ancestor">
     <div class="tile is-parent" v-show="showListView">
       <listLayout class="tile is-child" :filterData="filterData"/>
@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import entryLayout from './components/entry-fields/entry-layout'
 import selectView from './components/view-selector/select-view'
 import listLayout from './components/task-list/layout'
 import calendarLayout from './components/calendar/calendar-layout'
@@ -46,7 +45,6 @@ export default {
   },
   components: {
     selectView,
-    entryLayout,
     listLayout,
     calendarLayout,
     footerLayout

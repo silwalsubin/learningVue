@@ -7,8 +7,7 @@
         <button class="delete" aria-label="close" @click="closeModal()"></button>
       </header>
       <section class="modal-card-body">
-        <entryLayout :showDueDateInput=false :externalDueDate="selectedDate"/>
-        <listLayout :selectedDate="selectedDate"/>
+        <entryLayout @taskCreated="closeModal()"/>
       </section>
     </div>
   </div>
@@ -16,14 +15,8 @@
 
 
 <script>
-import entryLayout from '../../entry-fields/entry-layout'
-import listLayout from '../../task-list/layout'
+import entryLayout from '../entry-fields/entry-layout'
 export default {
-  props: {
-    selectedDate: {
-      type: String
-    }
-  },
   data() {
     return {
       modalCss : "modal"
@@ -39,12 +32,11 @@ export default {
       return (this.isActive === true) ? "modal is-active": "modal";
     },
     getModalTitle(){
-      return `Task(s) due on ${this.selectedDate}`
+      return `Add Task`
     }
   },
   components: {
-    entryLayout,
-    listLayout
+    entryLayout
   }
 }
 </script>

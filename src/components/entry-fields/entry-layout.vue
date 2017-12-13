@@ -21,6 +21,7 @@ export default {
   methods: {
     addTask(task){
       this.$store.dispatch('addTask', task);
+      this.$emit('taskCreated');
       let message = `Task ${task.name} added successfully.`
       notify(message);
     }

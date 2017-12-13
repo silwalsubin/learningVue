@@ -9,7 +9,7 @@
 
 <script>
   import vueFullcalendar from 'vue-fullcalendar';
-  import listModal from './modals/task-list-modal'
+  import listModal from '../modals/task-list-modal'
   import moment from 'moment';
 
   export default {
