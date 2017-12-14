@@ -1,11 +1,11 @@
 <template>
-  <entry :showDueDateInput="showDueDateInput"
-         :externalDueDate="externalDueDate"
-         @addTask="addTask"/>
+  <entry v-if="showDueDateInput" @addTask="addTask"/>
+  <entryCalendar v-else :dueDate="externalDueDate"  @addTask="addTask"/>
 </template>
 
 <script>
 import entry from './entry'
+import entryCalendar from './entry-calendar'
 import notify from '../../notification'
 export default {
   props: {
@@ -27,7 +27,8 @@ export default {
     }
   },
   components: {
-    entry
+    entry,
+    entryCalendar
   }
 }
 </script>
