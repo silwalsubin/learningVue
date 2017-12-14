@@ -2,7 +2,7 @@
   <div>
      <vueFullcalendar :events="getEvents" @dayClick="daySelected"
                        @eventClick="eventSelected" locale="en"/>
-     <listModal :class="getModalCss" :selectedDate="selectedDate"
+     <listModal :class="getModalCss" :selectedDate="getSelectedDate"
                 @modalClosed="closeModal()"/>
   </div>
 </template>
@@ -43,11 +43,19 @@
       daySelected(date){
         this.modalCss = "modal is-active";
         this.selectedDate = moment(date).format('YYYY-MM-DD');
+        this.$nextTick(() => {
+          let inputBox = this.$el.querySelector('.task-entry-input');
+          inputBox.focus();
+        });
       },
       eventSelected(event){
         this.modalCss = "modal is-active";
         let eventDate = new Date(event.start);
         this.selectedDate = moment(eventDate).format('YYYY-MM-DD');
+        this.$nextTick(() => {
+          let inputBox = this.$el.querySelector('.task-entry-input');
+          inputBox.focus();
+        });
       },
       updateTask(task){
         this.$emit('updateTask', task);
@@ -71,6 +79,9 @@
       getFilteredTasks() {
         return this.tasks.filter
         (x => moment(x.dueDate).format('MM/DD/YYYY') === this.selectedDate );
+      },
+      getSelectedDate(){
+        return this.selectedDate;
       }
     }
   }

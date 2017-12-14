@@ -2,20 +2,25 @@
 <div class="box entrybox">
   <div class="field">
     <p class="control">
-      <input class="input" type="text"
-       @keyup.enter="addTask(enteredTask, dueDate)"
+      <input ref='entryInput' class="input task-entry-input" type="text"
+       @keyup.enter="mayAddTask(enteredTask, dueDate)"
        v-model="enteredTask"
-       placeholder="Enter a task">
+       placeholder="Enter a task"
+       autofocus="autofocus"
+       tabindex="1">
     </p>
   </div>
-  <div class="field" v-show="showDueDateInput">
-    <p class="control has-icons-left">
+  <div class="field">
+    <p class="control has-icons-left" v-if="showDueDateInput">
       <flat-pickr
-          v-model = "dueDate"
+          v-model="dueDate"
           :required="true"
           class="input"
           placeholder="Due date"
-          name="date"/>
+          name="date"
+          :disabled="!showDueDateInput"
+          :tabindex="2"
+          @on-change="changeFocusToAddButton()"/>
       <span class="icon is-small is-left">
         <i class="fa fa-calendar"></i>
       </span>
@@ -23,7 +28,9 @@
   </div>
   <div class="field">
     <p class="control">
-      <button class="button is-success" @click="addTask(enteredTask, dueDate)">
+      <button ref="addButton" class="button is-success add-task-button"
+              @click="addTask(enteredTask, dueDate)"
+              :tabindex="3">
         Add
       </button>
     </p>
@@ -35,6 +42,7 @@
 
 import swal from 'sweetalert'
 import flatPickr from 'vue-flatpickr-component';
+import moment from 'moment'
 
 export default {
   name: "entry",
@@ -50,9 +58,6 @@ export default {
   },
   methods: {
     addTask(name, dueDate){
-      if (this.showDueDateInput === false){
-        dueDate = this.externalDueDate;
-      }
       if (name.trim() === ""){
         swal("Error", "Name field cannot be empty", "error");
       }
@@ -62,14 +67,31 @@ export default {
       else {
         this.$emit("addTask", {name, dueDate});
         this.enteredTask = "";
-        this.dueDate = "";
+        this.dueDate = this.getDueDate();
+      }
+      this.$nextTick(() => {
+         this.$refs.entryInput.focus();
+         this.$refs.entryInput.select();
+      });
+    },
+    changeFocusToAddButton(){
+      this.$refs.addButton.focus();
+    },
+    getDueDate(){
+      let tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      return tomorrow ;
+    },
+    mayAddTask(name, dueDate){
+      if (this.showDueDateInput === false){
+        this.addTask(name, dueDate);
       }
     }
   },
   data() {
     return {
       enteredTask: '',
-      dueDate: ''
+      dueDate : this.getDueDate()
     }
   },
   components: {
