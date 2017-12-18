@@ -1,3 +1,15 @@
+import path from "path";
+
+function isAuthorizedClientHost(hostName){
+  return (process.env.CLIENT_HOST_NAME === hostName);
+}
+
+function sendUnauthorizedHtml(response){
+  response.setHeader('Content-Type', 'text/html');
+  response.sendFile(path.join
+                    (__dirname + '/../views/unauthorized-message.html'));
+}
+
 let tasks = require ('express').Router();
 import taskRepo from '../persistence/task-repository';
 
@@ -22,7 +34,12 @@ tasks.post('/update', (req, res) => {
 });
 
 tasks.get('/getAll', (req, res) => {
-  res.send(taskRepo.getAll());
+  if (isAuthorizedClientHost(req.headers.referer)){
+    res.send(taskRepo.getAll());
+  }
+  else{
+    sendUnauthorizedHtml(res);
+  }
 });
 
 tasks.post('/setAll', (req, res) => {
