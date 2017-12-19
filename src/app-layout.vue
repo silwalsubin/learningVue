@@ -3,6 +3,9 @@
   <selectView @listViewSelected="listViewSelected"
               @calendarViewSelected="calendarViewSelected"/>
   <entryLayout/>
+  <a href="http://localhost:3000/auth/google">
+    <i class="fa fa-google-plus"/>
+  </a>
   <div id="layout" class="tile is-ancestor">
     <div class="tile is-parent" v-show="showListView">
       <listLayout class="tile is-child" :filterData="filterData"/>
