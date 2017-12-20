@@ -34,12 +34,7 @@ tasks.post('/update', (req, res) => {
 });
 
 tasks.get('/getAll', (req, res) => {
-  if (isAuthorizedClientHost(req.headers.referer)){
     res.send(taskRepo.getAll());
-  }
-  else{
-    sendUnauthorizedHtml(res);
-  }
 });
 
 tasks.post('/setAll', (req, res) => {

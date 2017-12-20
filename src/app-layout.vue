@@ -3,9 +3,10 @@
   <selectView @listViewSelected="listViewSelected"
               @calendarViewSelected="calendarViewSelected"/>
   <entryLayout/>
-  <a href="http://localhost:3000/auth/google">
+  <!-- <a href="http://localhost:3000/auth/google">
     <i class="fa fa-google-plus"/>
-  </a>
+  </a> -->
+  <signInButton/>
   <div id="layout" class="tile is-ancestor">
     <div class="tile is-parent" v-show="showListView">
       <listLayout class="tile is-child" :filterData="filterData"/>
@@ -20,12 +21,15 @@
 </div>
 </template>
 
+
+
 <script>
 import entryLayout from './components/entry-fields/entry-layout'
 import selectView from './components/view-selector/select-view'
 import listLayout from './components/task-list/layout'
 import calendarLayout from './components/calendar/calendar-layout'
 import footerLayout from './components/footer/footer-layout'
+import signInButton from './components/sign-in-button'
 
 export default {
   name: 'layout',
@@ -48,6 +52,7 @@ export default {
     }
   },
   components: {
+    signInButton,
     selectView,
     entryLayout,
     listLayout,
