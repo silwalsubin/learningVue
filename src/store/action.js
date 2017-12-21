@@ -10,6 +10,7 @@ function getUrl(methodName) {
 export default {
   addTask: (context, payload) => {
     let task = {
+      userID: context.state.user.id,
       dueDate: payload.dueDate,
       id : uuid(),
       name : payload.name,
@@ -30,8 +31,10 @@ export default {
     .catch((error) => { console.log(error); });
   },
   getTasksData: (context) => {
-    axios.get(getUrl("/getAll"))
-    .then(response => { context.commit('setTasks', response.data); })
+    axios.post(getUrl("/getAll"), {data: context.state.user.id})
+    .then(response => {
+      context.commit('setTasks', response.data);
+    })
     .catch((error) => { console.log(error); });
   },
   changeOrder: (context, payload) => {

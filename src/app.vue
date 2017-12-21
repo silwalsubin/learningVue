@@ -17,16 +17,9 @@ import appLayout from './app-layout'
 
 export default {
   name: 'app',
-  data(){
-    return {
-      isSignedIn: false
-    }
-  },
   components: {
     appHeader,
     appLayout
-  },
-  mounted() {
   }
 }
 </script>

@@ -33,8 +33,9 @@ tasks.post('/update', (req, res) => {
   res.send(taskRepo.set(req.body.data));
 });
 
-tasks.get('/getAll', (req, res) => {
-    res.send(taskRepo.getAll());
+tasks.post('/getAll', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(taskRepo.getAll(req.body.data));
 });
 
 tasks.post('/setAll', (req, res) => {

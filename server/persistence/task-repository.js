@@ -2,8 +2,9 @@ import jsonDb from 'node-json-db';
 let db = new jsonDb("./database/todos", true, false);
 
 export default {
-  getAll: () => {
-    return db.getData('/').tasks;
+  getAll: (userID) => {
+    let tasks = db.getData('/').tasks
+    return tasks.filter(x => x.userID === userID);
   },
   add: (task) => {
     let tasks = db.getData('/').tasks;

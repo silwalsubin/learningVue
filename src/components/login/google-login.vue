@@ -37,7 +37,7 @@
           imageURL: profile.getImageUrl(),
           email: profile.getEmail()
         }
-          this.$emit('success', user);
+        this.$emit('success', user);
       }
     },
     mounted() {
