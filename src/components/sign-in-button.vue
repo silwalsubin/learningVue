@@ -3,43 +3,47 @@
     <button @click="signOut()">Sign out</button>
     <button @click="getProfileInfo()">ProfilInfo</button>
     <button id="signin-button" ref="signinBtn">Sign In </button>
-    <div class="g-signin2" googleUser="onSignin()"></div>
+    <div id="my-signin2"></div>
   </div>
 </template>
 
 <script >
+
+
+
+
   import googleApi from './platform'
   import googlePlatform from './googlePlatform'
 
   export default {
     name: 'sign-in-button',
-    props: {
-      isUserSignedin : {
-        type: Boolean,
-        default: false
-      }
-    },
     data(){
       return {
         url: "https://apis.google.com/js/platform.js",
-        user:{}
+        user:{},
+        isSignedIn : false
       }
     },
     methods: {
-      appStart(){
-        gapi.load(this.user, this.initClient());
+      renderButton() {
+        gapi.signin2.render('my-signin2', {
+          'scope': 'profile email',
+          'width': 240,
+          'height': 50,
+          'longtitle': true,
+          'theme': 'dark',
+          'onsuccess': this.onSuccess,
+          'onfailure': this.onFailure
+        });
       },
-      initClient(){
-        console.log("is there anybody out there? ")
-          this.user = gapi.auth2.init({
-            client_id: `817728938926-ctui6aa8ri3ge1tjltd396h8qtars40s.apps.googleusercontent.com`,
-            scope: 'profile'
-          });
+      onFailure(error) {
+        console.log(error);
       },
-      onSignin(){
-        console.log("function called");
+      onSuccess(googleUser) {
+        this.isUserSignedin = true;
       },
       signOut(){
+        this.isUserSignedin = false;
         this.user = gapi.auth2.getAuthInstance();
         if (this.user.isSignedIn.get()){
           this.user.signOut().then(function () {
@@ -66,8 +70,7 @@
       }
     },
     mounted() {
-
-
+      this.renderButton();
       googleApi.gapiLoadedPromise().then(() => {
         console.log("in the dom");
       }).catch(() => {
@@ -75,9 +78,15 @@
       });
     },
     computed: {
-      // isUserSignedin(){
-      //   return gapi.auth2.getAuthInstance().isSignedIn.get();
-      // }
+      isUserSignedin: {
+        get(){
+          return this.isSignedIn;
+        },
+        set(value){
+          console.log("hello hello")
+          this.$emit('signInStatus', value);
+        }
+      }
     }
   }
 </script>
