@@ -31,7 +31,6 @@ export default {
     .catch((error) => { console.log(error); });
   },
   getTasksData: (context) => {
-    console.log(context.state.user.id);
     axios.post(getUrl("/getAll"), {data: context.state.user.id})
     .then(response => {
       context.commit('setTasks', response.data);
