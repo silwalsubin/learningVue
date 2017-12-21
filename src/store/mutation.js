@@ -9,9 +9,9 @@ export default{
   deleteTask: (state, id) => {
     state.tasks.splice(state.tasks.findIndex(x => x.id === id), 1);
   },
-  logUserIn: (state, user) => {
+  logUserIn: (state, userObject) => {
     state.isSignedIn = true;
-    state.user = user;
+    state.user = userObject;
   },
   logUserOut: (state) => {
     state.isSignedIn = false;

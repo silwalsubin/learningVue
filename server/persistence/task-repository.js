@@ -3,7 +3,7 @@ let db = new jsonDb("./database/todos", true, false);
 
 export default {
   getAll: (userID) => {
-    let tasks = db.getData('/').tasks
+    let tasks = db.getData('/').tasks;
     return tasks.filter(x => x.userID === userID);
   },
   add: (task) => {
