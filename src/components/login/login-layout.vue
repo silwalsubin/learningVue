@@ -1,6 +1,6 @@
 <template>
   <div>
-    <googleLogin @success="onSuccess()"/>
+    <googleLogin @success="onSuccess"/>
   </div>
 </template>
 
@@ -8,8 +8,8 @@
 import googleLogin from './google-login'
 export default {
   methods: {
-    onSuccess(){
-      this.$store.dispatch('logUserIn');
+    onSuccess(user){
+      this.$store.dispatch('logUserIn', user);
     }
   },
   components: {

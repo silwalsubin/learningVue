@@ -2,15 +2,20 @@ export default{
   addTask: (state, task) => {
     state.tasks.splice(0, 0, task);
   },
-  changeSignedInStatus(state, value){
-    state.isSignedIn = value;
-  },
   changeStatus: (state, id) => {
     let task = state.tasks.find(x => x.id === id);
     task.isComplete = !task.isComplete;
   },
   deleteTask: (state, id) => {
     state.tasks.splice(state.tasks.findIndex(x => x.id === id), 1);
+  },
+  logUserIn: (state, user) => {
+    state.isSignedIn = true;
+    state.user = user;
+  },
+  logUserOut: (state) => {
+    state.isSignedIn = false;
+    state.user = {};
   },
   setTasks: (state, tasks) => {
     state.tasks.length = 0;

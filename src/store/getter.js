@@ -13,5 +13,8 @@ export default{
   },
   getSignedinStatus: (state) => {
     return state.isSignedIn;
+  },
+  getUser: (state) => {
+    return state.user;
   }
 }

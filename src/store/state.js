@@ -1,4 +1,5 @@
 export default{
   tasks: [],
-  isSignedIn: false
+  isSignedIn: false,
+  user: {}
 }

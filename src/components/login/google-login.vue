@@ -26,7 +26,18 @@
         console.log(error);
       },
       onSuccess(googleUser) {
-          this.$emit('success');
+        let userInstance = gapi.auth2.getAuthInstance();
+        if (userInstance.isSignedIn.get()) {
+          var profile = userInstance.currentUser.get().getBasicProfile();
+        }
+        let user = {
+          id : profile.getId(),
+          firstName: profile.getGivenName(),
+          lastName: profile.getFamilyName(),
+          imageURL: profile.getImageUrl(),
+          email: profile.getEmail()
+        }
+          this.$emit('success', user);
       }
     },
     mounted() {
