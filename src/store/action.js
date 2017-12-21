@@ -39,6 +39,12 @@ export default {
     .then(() => { context.commit('setTasks', payload); })
     .catch((error) => { console.log(error); });
   },
+  logUserIn: (context) => {
+    context.commit('changeSignedInStatus', true);
+  },
+  logUserOut: (context) => {
+    context.commit('changeSignedInStatus', false);
+  },
   updateTask: (context, payload) => {
     axios.post(getUrl("/update"), { data: payload })
     .then (() => { context.commit('updateTask', payload); })

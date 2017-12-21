@@ -10,5 +10,8 @@ export default{
       toDo: totalTasks - completedTasks,
       total: totalTasks
     };
+  },
+  getSignedinStatus: (state) => {
+    return state.isSignedIn;
   }
 }

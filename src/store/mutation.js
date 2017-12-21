@@ -2,6 +2,9 @@ export default{
   addTask: (state, task) => {
     state.tasks.splice(0, 0, task);
   },
+  changeSignedInStatus(state, value){
+    state.isSignedIn = value;
+  },
   changeStatus: (state, id) => {
     let task = state.tasks.find(x => x.id === id);
     task.isComplete = !task.isComplete;

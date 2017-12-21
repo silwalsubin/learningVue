@@ -15,19 +15,18 @@
 import appHeader from './app-header'
 import appLayout from './app-layout'
 
-
 export default {
   name: 'app',
+  data(){
+    return {
+      isSignedIn: false
+    }
+  },
   components: {
     appHeader,
     appLayout
   },
   mounted() {
-    let script = document.createElement("script");
-    script.src = "https://apis.google.com/js/platform.js";
-    script.async = "async";
-    script.defer = "defer";
-    document.head.appendChild(script);
   }
 }
 </script>
