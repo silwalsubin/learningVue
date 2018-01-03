@@ -10,8 +10,6 @@
       <div class="content">
         <p>
           <strong>Hi {{user.firstName}}</strong>
-          <!-- <br/>
-          <small>{{user.email}}</small> -->
         </p>
       </div>
       <nav class="level is-mobile">
@@ -26,8 +24,7 @@
 
 <script>
 
-import googleLogout from './google-logout'
-
+import googleLogout from '../authentication/google/google-logout'
 export default {
   props: {
 

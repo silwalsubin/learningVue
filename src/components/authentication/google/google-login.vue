@@ -5,22 +5,24 @@
 </template>
 
 <script >
-  import googleApi from './platform'
-  import googlePlatform from './googlePlatform'
+  import scriptLoader from 'scriptjs';
+  let url = 'https://apis.google.com/js/platform.js?onload=onLoadCallback';
 
   export default {
     name: 'google-login',
     methods: {
       renderButton() {
-        gapi.signin2.render('my-signin2', {
-          'scope': 'profile email',
-          'width': 240,
-          'height': 50,
-          'longtitle': true,
-          'theme': 'dark',
-          'onsuccess': this.onSuccess,
-          'onfailure': this.onFailure
-        });
+          scriptLoader(url, () => {
+            gapi.signin2.render('my-signin2', {
+              'scope': 'profile email',
+              'width': 240,
+              'height': 50,
+              'longtitle': true,
+              'theme': 'dark',
+              'onsuccess': this.onSuccess,
+              'onfailure': this.onFailure
+            });
+          })
       },
       onFailure(error) {
         console.log(error);
@@ -41,12 +43,7 @@
       }
     },
     mounted() {
-      this.renderButton();
-      // googleApi.gapiLoadedPromise().then(() => {
-      //   console.log("in the dom");
-      // }).catch(() => {
-      //   console.log("its not in the  dom")
-      // });
+        this.renderButton();
     }
   }
 </script>

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import googleLogin from './google-login'
+import googleLogin from '../authentication/google/google-login'
 export default {
   methods: {
     onSuccess(user){

@@ -20,6 +20,21 @@ export default {
   components: {
     appHeader,
     appLayout
+  },
+  created() {
+    // if (!window.gapi){
+    //   let s = document.createElement("script");
+    //   s.type = "text/javascript";
+    //   s.src = "https://apis.google.com/js/platform.js?onload=onLoadCallback";
+    //   s.async = true;
+    //   s.defer = "defer";
+    //   document.getElementById('app').appendChild(s);
+    //   if (!window.gapi){
+    //     console.log("asdfasdfsadf");
+    //   }
+    //   //this.$el.appendChild(s);
+    //
+    // }
   }
 }
 </script>
