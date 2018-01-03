@@ -8,13 +8,17 @@ function renderButton(id, config){
   })
 }
 
+function getAuthInstance(){
+  return gapi.auth2.getAuthInstance();
+}
+
 function isSignedIn(){
-  return gapi.auth2.getAuthInstance().isSignedIn.get();
+  return getAuthInstance().isSignedIn.get();
 }
 
 function getCurrentUser(){
   if (isSignedIn()){
-    var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+    var profile = getAuthInstance().currentUser.get().getBasicProfile();
     return {
       id : profile.getId(),
       firstName: profile.getGivenName(),
@@ -31,11 +35,11 @@ function getCurrentUser(){
 function signOut(){
   if (isSignedIn()){
     return new Promise((resolve, reject) => {
-      gapi.auth2.getAuthInstance().signOut().then(() => {
+      getAuthInstance().signOut().then(() => {
         resolve();
       });
     })
   }
 }
 
-export default {renderButton, isSignedIn, getCurrentUser, signOut};
+export default {renderButton, getCurrentUser, signOut};

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :id='id'></div>
+    <div :id='buttonId'></div>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
     name: 'google-login',
     data(){
       return {
-        id: 'google-sign-in-button',
+        buttonId: 'google-sign-in-button',
         buttonConfig: {
           'scope': 'profile email',
           'width': 240,
@@ -31,7 +31,7 @@
       }
     },
     mounted() {
-        googleApiHandler.renderButton(this.id, this.buttonConfig);
+        googleApiHandler.renderButton(this.buttonId, this.buttonConfig);
     }
   }
 </script>
