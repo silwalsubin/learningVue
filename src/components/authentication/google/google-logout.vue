@@ -3,16 +3,13 @@
 </template>
 
 <script>
+  import googleApiHandler from './google-api-handler';
   export default {
     methods: {
       logOut(){
-        let userInstance = gapi.auth2.getAuthInstance();
-        if (userInstance.isSignedIn.get()){
-          let something = true;
-          userInstance.signOut().then(() => {
+        googleApiHandler.signOut().then(() => {
           this.$emit('logOut');
-        })
-      }
+        });
     }
   }
 }

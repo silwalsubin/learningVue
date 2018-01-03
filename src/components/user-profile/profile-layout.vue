@@ -26,9 +26,6 @@
 
 import googleLogout from '../authentication/google/google-logout'
 export default {
-  props: {
-
-  },
   methods: {
     logOut(){
         this.$store.dispatch('logUserOut');
