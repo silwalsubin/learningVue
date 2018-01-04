@@ -40,10 +40,9 @@ export default {
       this.$store.dispatch('changeStatus', id);
     },
     deleteTask(id){
+      let taskName = this.tasks.find(x => x.id === id).name;
       this.$store.dispatch('deleteTask', id).then(() => {
-        let message = `Task ${this.tasks.find(x => x.id === id).name}
-                       deleted successfully.`
-        notify(message);
+        notify(`Task ${taskName} deleted successfully.`);
       });
     },
     updateTask(task){

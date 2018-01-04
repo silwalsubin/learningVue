@@ -1,5 +1,6 @@
 import axios from 'axios';
 import uuid from 'uuid';
+import notify from '../notification'
 
 const baseUrl = "http://localhost:3000/task";
 
@@ -16,14 +17,28 @@ export default {
       name : payload.name,
       isComplete : false
     }
-    axios.post(getUrl("/add"), { data: task })
-    .then(() => { context.commit('addTask', task); })
-    .catch((error) => { console.log(error); });
+    return new Promise ((resolve, reject) => {
+      axios.post(getUrl("/add"), { data: task })
+      .then(() => {
+        context.commit('addTask', task);
+        resolve();
+      })
+      .catch((error) => {
+        reject(error);
+      });
+    });
   },
   deleteTask: (context, payload) => {
-    axios.post(getUrl("/delete"), { data: payload })
-    .then(() => { context.commit('deleteTask', payload); })
-    .catch((error) => { console.log(error); });
+    return new Promise ((resolve, reject) => {
+      axios.post(getUrl("/delete"), { data: payload })
+      .then(() => {
+        context.commit('deleteTask', payload);
+        resolve();
+      })
+      .catch((error) => {
+        reject(error);
+      });
+    });
   },
   changeStatus: (context, payload) => {
     axios.post(getUrl("/changeStatus"), { data: payload })

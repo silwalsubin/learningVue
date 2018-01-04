@@ -3,7 +3,7 @@ import '../node_modules/noty/lib/noty.css';
 
 
 noty.overrideDefaults({
-    layout   : 'topRight',
+    layout: 'topRight',
     type: 'success',
     theme: 'metroui',
     timeout: 1000
