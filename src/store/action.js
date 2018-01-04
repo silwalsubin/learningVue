@@ -1,6 +1,7 @@
 import axios from 'axios';
 import uuid from 'uuid';
 import notify from '../notification'
+import httpClient from '../http-client'
 
 const baseUrl = "http://localhost:3000/task";
 
@@ -18,44 +19,35 @@ export default {
       isComplete : false
     }
     return new Promise ((resolve, reject) => {
-      axios.post(getUrl("/add"), { data: task })
+      httpClient.post(getUrl("/add"), {data : task})
       .then(() => {
         context.commit('addTask', task);
         resolve();
-      })
-      .catch((error) => {
-        reject(error);
       });
     });
   },
   deleteTask: (context, payload) => {
     return new Promise ((resolve, reject) => {
-      axios.post(getUrl("/delete"), { data: payload })
+      httpClient.post(getUrl("/delete"), { data: payload })
       .then(() => {
         context.commit('deleteTask', payload);
         resolve();
-      })
-      .catch((error) => {
-        reject(error);
       });
     });
   },
   changeStatus: (context, payload) => {
-    axios.post(getUrl("/changeStatus"), { data: payload })
-    .then(() => { context.commit('changeStatus', payload); })
-    .catch((error) => { console.log(error); });
+    httpClient.post(getUrl("/changeStatus"), { data: payload })
+    .then(() => { context.commit('changeStatus', payload); });
   },
   getTasksData: (context) => {
-    axios.post(getUrl("/getAll"), {data: context.state.user.id})
+    httpClient.post(getUrl("/getAll"), {data: context.state.user.id})
     .then(response => {
       context.commit('setTasks', response.data);
-    })
-    .catch((error) => { console.log(error); });
+    });
   },
   changeOrder: (context, payload) => {
-    axios.post(getUrl("/setAll"), {data: payload})
-    .then(() => { context.commit('setTasks', payload); })
-    .catch((error) => { console.log(error); });
+    httpClient.post(getUrl("/setAll"), {data: payload})
+    .then(() => { context.commit('setTasks', payload); });
   },
   logUserIn: (context, payload) => {
     context.commit('logUserIn', payload);
@@ -64,8 +56,7 @@ export default {
     context.commit('logUserOut');
   },
   updateTask: (context, payload) => {
-    axios.post(getUrl("/update"), { data: payload })
-    .then (() => { context.commit('updateTask', payload); })
-    .catch(() => { console.log(error); });
+    httpClient.post(getUrl("/update"), { data: payload })
+    .then (() => { context.commit('updateTask', payload); });
   }
 }
