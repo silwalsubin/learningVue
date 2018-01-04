@@ -1,6 +1,4 @@
-import axios from 'axios';
 import uuid from 'uuid';
-import notify from '../notification'
 import httpClient from '../http-client'
 
 const baseUrl = "http://localhost:3000/task";
